@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01228AD21E8D6ED6008C558C /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD11E8D6ED6008C558C /* PatientViewController.swift */; };
+		01228AD31E8D6ED6008C558C /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD11E8D6ED6008C558C /* PatientViewController.swift */; };
+		01228AD41E8D6ED6008C558C /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD11E8D6ED6008C558C /* PatientViewController.swift */; };
+		01228AD61E8D7264008C558C /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD51E8D7264008C558C /* EmployeeViewController.swift */; };
+		01228AD71E8D7264008C558C /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD51E8D7264008C558C /* EmployeeViewController.swift */; };
+		01228AD81E8D7264008C558C /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD51E8D7264008C558C /* EmployeeViewController.swift */; };
 		012C10BC1E8C2F25001200E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10BB1E8C2F25001200E2 /* AppDelegate.swift */; };
 		012C10BE1E8C2F25001200E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10BD1E8C2F25001200E2 /* ViewController.swift */; };
 		012C10C11E8C2F25001200E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012C10BF1E8C2F25001200E2 /* Main.storyboard */; };
@@ -34,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01228AD11E8D6ED6008C558C /* PatientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientViewController.swift; sourceTree = "<group>"; };
+		01228AD51E8D7264008C558C /* EmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewController.swift; sourceTree = "<group>"; };
 		012C10B81E8C2F25001200E2 /* HospitalSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HospitalSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		012C10BB1E8C2F25001200E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		012C10BD1E8C2F25001200E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				012C10BB1E8C2F25001200E2 /* AppDelegate.swift */,
+				01228AD51E8D7264008C558C /* EmployeeViewController.swift */,
 				012C10BD1E8C2F25001200E2 /* ViewController.swift */,
+				01228AD11E8D6ED6008C558C /* PatientViewController.swift */,
 				012C10BF1E8C2F25001200E2 /* Main.storyboard */,
 				012C10C21E8C2F25001200E2 /* Assets.xcassets */,
 				012C10C41E8C2F25001200E2 /* LaunchScreen.storyboard */,
@@ -264,6 +274,8 @@
 			files = (
 				012C10BE1E8C2F25001200E2 /* ViewController.swift in Sources */,
 				012C10BC1E8C2F25001200E2 /* AppDelegate.swift in Sources */,
+				01228AD61E8D7264008C558C /* EmployeeViewController.swift in Sources */,
+				01228AD21E8D6ED6008C558C /* PatientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +283,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01228AD31E8D6ED6008C558C /* PatientViewController.swift in Sources */,
+				01228AD71E8D7264008C558C /* EmployeeViewController.swift in Sources */,
 				012C10D11E8C2F25001200E2 /* HospitalSystemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01228AD41E8D6ED6008C558C /* PatientViewController.swift in Sources */,
+				01228AD81E8D7264008C558C /* EmployeeViewController.swift in Sources */,
 				012C10DC1E8C2F25001200E2 /* HospitalSystemUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +532,7 @@
 				012C10E21E8C2F25001200E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		012C10E31E8C2F25001200E2 /* Build configuration list for PBXNativeTarget "HospitalSystemTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +541,7 @@
 				012C10E51E8C2F25001200E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		012C10E61E8C2F25001200E2 /* Build configuration list for PBXNativeTarget "HospitalSystemUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +550,7 @@
 				012C10E81E8C2F25001200E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

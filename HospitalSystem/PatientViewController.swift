@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController {
+class PatientViewController: UIViewController {
     
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btLabel: UILabel!
     @IBOutlet weak var daLabel: UILabel!
     @IBOutlet weak var roomtypeLabel: UILabel!
-
+    
     var Name : String = ""
     var Sex : String = ""
     var Add : String = ""
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     var RoomType : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "http://sdphospitalsystem.uconn.edu/get_patient.php?prfid=f6%20ee%2014%207e")
+        let url = URL(string: "http://sdphospitalsystem.uconn.edu/get_patient.php?prfid=b3%2079%20a2%209e5")
         do {
             let RESULT = try Data(contentsOf: url!)
             let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : Any]
@@ -57,6 +57,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 
