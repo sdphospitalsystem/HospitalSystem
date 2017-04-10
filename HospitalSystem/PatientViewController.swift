@@ -27,9 +27,30 @@ class PatientViewController: UIViewController {
     var BT : String = ""
     var DA : String = ""
     var RoomType : String = ""
+    var finalUID : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "http://sdphospitalsystem.uconn.edu/get_patient.php?prfid=b3%2079%20a2%209e5")
+        
+        
+        let session = NMSSHSession.connect(toHost: "50.28.143.246:/libnfc/examples", port: 22, withUsername: "pi")
+        if(session?.isConnected)!{
+            session?.authenticate(byPassword: "raspberry")
+        }
+        
+        do { let response = try session?.channel.execute("nfc-poll", error: nil, timeout: 10000000)
+            let _uid = response?.range(of: "UID")
+            let uidEnd = _uid?.upperBound
+            let rightIndex = response?.index(uidEnd!, offsetBy: 11)
+            let uid = response?.substring(from: rightIndex!)
+            let uidstart = uid?.startIndex
+            let index = uid!.index(uidstart!, offsetBy: 14)
+            var UID = uid?.substring(to: index)
+            finalUID = (UID?.replacingOccurrences(of: "  ", with: "%20"))!
+        } catch {
+            print(error.localizedDescription)
+        }
+        let URLString = String(format: "http://sdphospitalsystem.uconn.edu/get_patient.php?prfid=%@", finalUID)
+        let url = URL(string: URLString)
         do {
             let RESULT = try Data(contentsOf: url!)
             let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : Any]

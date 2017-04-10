@@ -13,7 +13,7 @@ class ScanPi: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let session = NMSSHSession.connect(toHost: "137.99.226.18:/libnfc/examples", port: 22, withUsername: "pi")
+        let session = NMSSHSession.connect(toHost: "50.28.143.246:/libnfc/examples", port: 22, withUsername: "pi")
         if(session?.isConnected)!{
             session?.authenticate(byPassword: "raspberry")
         }
@@ -24,7 +24,8 @@ class ScanPi: UIViewController{
             let uid = response?.substring(from: rightIndex!)
             let uidstart = uid?.startIndex
             let index = uid!.index(uidstart!, offsetBy: 14)
-            let UID = uid?.substring(to: index)
+            var UID = uid?.substring(to: index)
+            UID = UID?.replacingOccurrences(of: "  ", with: "%20")
             print(UID)
         } catch {
             print(error.localizedDescription)
