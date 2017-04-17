@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011A3C3A1E9EBB5D003C77FC /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A3C391E9EBB5D003C77FC /* NewUser.swift */; };
+		011A3C3C1E9EBD3B003C77FC /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A3C3B1E9EBD3B003C77FC /* Patient.swift */; };
 		01228AD21E8D6ED6008C558C /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD11E8D6ED6008C558C /* PatientViewController.swift */; };
 		01228AD31E8D6ED6008C558C /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD11E8D6ED6008C558C /* PatientViewController.swift */; };
 		01228AD41E8D6ED6008C558C /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01228AD11E8D6ED6008C558C /* PatientViewController.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		011A3C391E9EBB5D003C77FC /* NewUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
+		011A3C3B1E9EBD3B003C77FC /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		01228AD11E8D6ED6008C558C /* PatientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientViewController.swift; sourceTree = "<group>"; };
 		01228AD51E8D7264008C558C /* EmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewController.swift; sourceTree = "<group>"; };
 		012C10B81E8C2F25001200E2 /* HospitalSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HospitalSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +129,8 @@
 				012C10C41E8C2F25001200E2 /* LaunchScreen.storyboard */,
 				012C10C71E8C2F25001200E2 /* Info.plist */,
 				01F838E31E9A8FFB0025FD64 /* HospitalSystem-Bridging-Header.h */,
+				011A3C391E9EBB5D003C77FC /* NewUser.swift */,
+				011A3C3B1E9EBD3B003C77FC /* Patient.swift */,
 			);
 			path = HospitalSystem;
 			sourceTree = "<group>";
@@ -354,8 +360,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				012C10BE1E8C2F25001200E2 /* ViewController.swift in Sources */,
+				011A3C3A1E9EBB5D003C77FC /* NewUser.swift in Sources */,
 				012C10BC1E8C2F25001200E2 /* AppDelegate.swift in Sources */,
 				01228AD61E8D7264008C558C /* EmployeeViewController.swift in Sources */,
+				011A3C3C1E9EBD3B003C77FC /* Patient.swift in Sources */,
 				01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */,
 				01228AD21E8D6ED6008C558C /* PatientViewController.swift in Sources */,
 			);

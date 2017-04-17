@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class ScanPi: UIViewController{
+class ScanPi {
+    let session = NMSSHSession.connect(toHost: "50.28.147.60:/libnfc/examples", port: 22, withUsername: "pi")
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let session = NMSSHSession.connect(toHost: "50.28.143.246:/libnfc/examples", port: 22, withUsername: "pi")
+    func getUID()->String{
+        var UID:String = ""
         if(session?.isConnected)!{
             session?.authenticate(byPassword: "raspberry")
         }
@@ -24,20 +24,21 @@ class ScanPi: UIViewController{
             let uid = response?.substring(from: rightIndex!)
             let uidstart = uid?.startIndex
             let index = uid!.index(uidstart!, offsetBy: 14)
-            var UID = uid?.substring(to: index)
-            UID = UID?.replacingOccurrences(of: "  ", with: "%20")
-            print(UID)
+            UID = (uid?.substring(to: index))!
         } catch {
             print(error.localizedDescription)
         }
-        
-        
+        return UID
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func getWebUID()->String{
+        var UID:String=""
+        UID = self.getUID()
+        UID = UID.replacingOccurrences(of: "  ", with: "%20")
+        return UID
     }
- 
+    
+    
     
     
     

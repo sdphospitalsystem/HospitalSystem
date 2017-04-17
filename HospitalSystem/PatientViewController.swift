@@ -30,25 +30,8 @@ class PatientViewController: UIViewController {
     var finalUID : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        let session = NMSSHSession.connect(toHost: "50.28.143.246:/libnfc/examples", port: 22, withUsername: "pi")
-        if(session?.isConnected)!{
-            session?.authenticate(byPassword: "raspberry")
-        }
-        
-        do { let response = try session?.channel.execute("nfc-poll", error: nil, timeout: 10000000)
-            let _uid = response?.range(of: "UID")
-            let uidEnd = _uid?.upperBound
-            let rightIndex = response?.index(uidEnd!, offsetBy: 11)
-            let uid = response?.substring(from: rightIndex!)
-            let uidstart = uid?.startIndex
-            let index = uid!.index(uidstart!, offsetBy: 14)
-            var UID = uid?.substring(to: index)
-            finalUID = (UID?.replacingOccurrences(of: "  ", with: "%20"))!
-        } catch {
-            print(error.localizedDescription)
-        }
+        let Scan:ScanPi = ScanPi()
+        let finalUID = Scan.getWebUID()
         let URLString = String(format: "http://sdphospitalsystem.uconn.edu/get_patient.php?prfid=%@", finalUID)
         let url = URL(string: URLString)
         do {
