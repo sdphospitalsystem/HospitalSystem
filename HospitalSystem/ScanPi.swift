@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ScanPi {
-    let session = NMSSHSession.connect(toHost: "50.28.147.60:/libnfc/examples", port: 22, withUsername: "pi")
+    let session = NMSSHSession.connect(toHost: "sdppi.hopto.org:/libnfc/examples", port: 22, withUsername: "pi")
     
     func getUID()->String{
         var UID:String = ""
