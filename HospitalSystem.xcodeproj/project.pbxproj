@@ -22,6 +22,7 @@
 		012C10D11E8C2F25001200E2 /* HospitalSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10D01E8C2F25001200E2 /* HospitalSystemTests.swift */; };
 		012C10DC1E8C2F25001200E2 /* HospitalSystemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10DB1E8C2F25001200E2 /* HospitalSystemUITests.swift */; };
 		01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F838E91E9A90750025FD64 /* ScanPi.swift */; };
+		B7DDFFA21EA7EDA6003F7815 /* Pictures in Resources */ = {isa = PBXBuildFile; fileRef = B7DDFFA11EA7EDA6003F7815 /* Pictures */; };
 		B7EE985B1EA68FA800BB9EE1 /* HMTS_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EE985A1EA68FA800BB9EE1 /* HMTS_Logo.png */; };
 		E5B2CE265B0186473CB77856 /* libPods-HospitalSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA28BD7CE7255FD025B53E5A /* libPods-HospitalSystem.a */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		068D65190601CAA0A58B6B0B /* Pods-HospitalSystem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSystem.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSystem/Pods-HospitalSystem.debug.xcconfig"; sourceTree = "<group>"; };
 		37D6A7601A089AE235B6CA6C /* Pods-HospitalSystem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSystem.release.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSystem/Pods-HospitalSystem.release.xcconfig"; sourceTree = "<group>"; };
 		AA28BD7CE7255FD025B53E5A /* libPods-HospitalSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HospitalSystem.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7DDFFA11EA7EDA6003F7815 /* Pictures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pictures; sourceTree = "<group>"; };
 		B7EE985A1EA68FA800BB9EE1 /* HMTS_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HMTS_Logo.png; path = ../../Pics/HMTS_Logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 		012C10AF1E8C2F25001200E2 = {
 			isa = PBXGroup;
 			children = (
+				B7DDFFA11EA7EDA6003F7815 /* Pictures */,
 				012C10BA1E8C2F25001200E2 /* HospitalSystem */,
 				012C10CF1E8C2F25001200E2 /* HospitalSystemTests */,
 				012C10DA1E8C2F25001200E2 /* HospitalSystemUITests */,
@@ -286,6 +289,7 @@
 			files = (
 				B7EE985B1EA68FA800BB9EE1 /* HMTS_Logo.png in Resources */,
 				012C10C61E8C2F25001200E2 /* LaunchScreen.storyboard in Resources */,
+				B7DDFFA21EA7EDA6003F7815 /* Pictures in Resources */,
 				012C10C31E8C2F25001200E2 /* Assets.xcassets in Resources */,
 				012C10C11E8C2F25001200E2 /* Main.storyboard in Resources */,
 			);
