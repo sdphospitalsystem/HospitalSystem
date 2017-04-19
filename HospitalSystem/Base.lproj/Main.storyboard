@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tcJ-GE-aA2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tcJ-GE-aA2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -327,10 +327,11 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPt-kc-ye9">
-                                <rect key="frame" x="79" y="629" width="217" height="30"/>
+                                <rect key="frame" x="79" y="629" width="217" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Choose Photo For Profile"/>
+                                <state key="normal" title="Continue"/>
                                 <connections>
+                                    <action selector="continue:" destination="JC8-x9-v9R" eventType="touchUpInside" id="SMY-hr-bnV"/>
                                     <segue destination="pvf-zg-jMh" kind="presentation" id="rWS-Nk-jC0"/>
                                 </connections>
                             </button>
@@ -356,6 +357,7 @@
                     </view>
                     <connections>
                         <outlet property="addr" destination="HMu-f9-8B6" id="V6z-1O-1em"/>
+                        <outlet property="continue" destination="OPt-kc-ye9" id="Idk-0i-4IZ"/>
                         <outlet property="date" destination="Hu3-IK-bt4" id="gAF-J6-MYn"/>
                         <outlet property="email" destination="1kx-fl-ocS" id="UMX-i9-XXA"/>
                         <outlet property="name" destination="yJ0-GS-PJA" id="oLr-0l-gFW"/>
@@ -402,7 +404,6 @@
         <!--Navigation Controller-->
         <scene sceneID="d6D-sh-adQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bki-tu-xw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tcJ-GE-aA2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u3a-Kv-KGK">
@@ -414,6 +415,7 @@
                         <segue destination="vct-4B-MWt" kind="relationship" relationship="rootViewController" id="6WE-Mt-95m"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bki-tu-xw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-972" y="-22.03898050974513"/>
         </scene>

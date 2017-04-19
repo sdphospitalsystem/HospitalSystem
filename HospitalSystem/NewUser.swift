@@ -20,6 +20,7 @@ class NewUser: UIViewController, UITextFieldDelegate
     var USERNAME:String=""
     var EMAIL:String=""
     var PHONE:String=""
+    var UID:String = ""
     var Scanner:ScanPi = ScanPi()
     
     @IBOutlet weak var name: UITextField!
@@ -29,8 +30,24 @@ class NewUser: UIViewController, UITextFieldDelegate
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var phone: UITextField!
-    
-    
+ 
+    @IBAction func `continue`(_ sender: UIButton)
+    {
+        var request = URLRequest(url: NSURL(string: "http://sdphospitalsystem.uconn.edu/register_patient.php")! as URL)
+        request.httpMethod = "POST"
+        let postString = "rfid=\(UID)&name=\(name)&pass=\(pass)&add=\(addr)&date=\(date)&uname=\(username)&email=\(email)&phone=\(phone)"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            print("response = \(response)")
+            
+        }
+        
+    }
     
     
     
@@ -50,20 +67,18 @@ class NewUser: UIViewController, UITextFieldDelegate
         let USERNAME = username.text!
     }
     @IBAction func enterEmail(_ sender: Any) {
-        var EMAIL = email.text!
+        let EMAIL = email.text!
     }
     @IBAction func enterPhone(_ sender: Any) {
-        var PHONE = phone.text!
+        let PHONE = phone.text!
     }
     
-    
     @IBAction func registerRFID(_ sender: Any) {
-        var UID = Scanner.getUID()
+        let UID = Scanner.getUID()
         print(UID)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
     }
     
