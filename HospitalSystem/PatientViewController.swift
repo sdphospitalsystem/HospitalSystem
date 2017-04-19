@@ -38,12 +38,12 @@ class PatientViewController: UIViewController {
             let RESULT = try Data(contentsOf: url!)
             let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : Any]
             Name = JSON["PName"] as! String
-            Sex = JSON["PSex"] as! String
+            Sex = JSON["Sex"] as! String
             Add = JSON["Address"] as! String
-            HR = JSON["HeartRate"] as! String
-            BT = JSON ["BodyTemp"] as! String
+//            HR = JSON["HeartRate"] as! String
+//            BT = JSON ["BodyTemp"] as! String
             DA = JSON ["DateAdmitted"] as! String
-            RoomType = JSON["PRoomType"] as! String
+            RoomType = JSON["RID"] as! String
             nameLabel.text = Name
             sexLabel.text = Sex
             addLabel.text = Add
