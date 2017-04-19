@@ -56,6 +56,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="HMTS_Logo.png" width="16" height="16"/>
+        <image name="HMTS_Logo.png" width="320" height="108"/>
     </resources>
 </document>
