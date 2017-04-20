@@ -13,29 +13,52 @@ import UIKit
 class NewUser: UIViewController, UITextFieldDelegate
 {
 
+    @IBOutlet weak var continueButton: UIButton!
     var NAME:String = ""
     var PASS:String=""
     var ADDR:String=""
-    var DATE:Date?=nil
     var USERNAME:String=""
     var EMAIL:String=""
     var PHONE:String=""
     var UID:String = ""
-    var Scanner:ScanPi = ScanPi()
-    
+    var SEX:String = ""
+    var Scanner:ScanPi = ScanPi()    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var pass: UITextField!
     @IBOutlet weak var addr: UITextField!
-    @IBOutlet weak var date: UIDatePicker!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var phone: UITextField!
+    @IBOutlet weak var sex: UITextField!
  
+
+    
+    @IBAction func registerRFID(_ sender: Any) {
+        UID = Scanner.getUID()
+        continueButton.setTitle("Succesfully Register RFID tag", for: .normal)
+        }
+    
     @IBAction func `continue`(_ sender: UIButton)
     {
+        NAME = name.text!
+        PASS = pass.text!
+        ADDR = addr.text!
+        USERNAME = username.text!
+        EMAIL = email.text!
+        PHONE = phone.text!
+        SEX = sex.text!
+        print("Sending Data")
         var request = URLRequest(url: NSURL(string: "http://sdphospitalsystem.uconn.edu/register_patient.php")! as URL)
         request.httpMethod = "POST"
-        let postString = "rfid=\(UID)&name=\(name)&pass=\(pass)&add=\(addr)&date=\(date)&uname=\(username)&email=\(email)&phone=\(phone)"
+        print("UID= \(UID)")
+        print("NAME= \(NAME)")
+        print("PASS= \(PASS)")
+        print("ADDR= \(ADDR)")
+        print("USERNAME= \(USERNAME)")
+        print("EMAIL= \(EMAIL)")
+        print("PHONE= \(PHONE)")
+        print("SEX= \(SEX)")
+        let postString = "rfid=\(UID)&name=\(NAME)&pass=\(PASS)&add=\(ADDR)&uname=\(USERNAME)&email=\(EMAIL)&phone=\(PHONE)&sex=\(SEX)"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
@@ -46,41 +69,15 @@ class NewUser: UIViewController, UITextFieldDelegate
             print("response = \(response)")
             
         }
+        task.resume()
         
-    }
-    
-    
-    
-    @IBAction func enterName(_ sender: Any) {
-        let NAME = name.text!
-    }
-    @IBAction func enterPass(_ sender: Any) {
-        let PASS = pass.text!
-    }
-    @IBAction func enterAddress(_ sender: Any) {
-        let ADDR = addr.text!
-    }
-    @IBAction func enterDate(_ sender: Any) {
-        let DATE = date.date
-    }
-    @IBAction func enterUserName(_ sender: Any) {
-        let USERNAME = username.text!
-    }
-    @IBAction func enterEmail(_ sender: Any) {
-        let EMAIL = email.text!
-    }
-    @IBAction func enterPhone(_ sender: Any) {
-        let PHONE = phone.text!
-    }
-    
-    @IBAction func registerRFID(_ sender: Any) {
-        let UID = Scanner.getUID()
-        print(UID)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
