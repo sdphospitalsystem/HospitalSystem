@@ -139,7 +139,7 @@
         <!--Home-->
         <scene sceneID="Sb0-8E-RrI">
             <objects>
-                <viewController id="vct-4B-MWt" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="employeeMainScreen" id="vct-4B-MWt" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mo8-UE-RnW"/>
                         <viewControllerLayoutGuide type="bottom" id="ND5-Dt-SOe"/>
@@ -411,7 +411,7 @@
         <!--Employee Login-->
         <scene sceneID="Yrj-R1-a8i">
             <objects>
-                <viewController title="Employee Login" id="qZL-64-aw9" customClass="EmployeeLoginViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="employeeLogin" title="Employee Login" id="qZL-64-aw9" customClass="EmployeeLoginViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FOK-tG-7tD"/>
                         <viewControllerLayoutGuide type="bottom" id="wo1-Cl-oHv"/>
@@ -456,7 +456,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Oaa-rb-YUx" kind="show" id="pkO-OU-XHn"/>
+                                    <segue destination="vct-4B-MWt" kind="presentation" identifier="loginSegue" id="U8a-Sk-kzr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZ4-T2-J5c">
@@ -574,24 +574,6 @@
             <point key="canvasLocation" x="-2567" y="53"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="QjM-55-AFn">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Oaa-rb-YUx" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tf3-pV-91d">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="vct-4B-MWt" kind="relationship" relationship="rootViewController" id="r4m-Uw-Qaq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oIk-5Y-Qj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="590" y="442"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="6m3-Xc-7D8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Yz-Mg-bk9" sceneMemberID="viewController">
@@ -601,16 +583,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="wCF-At-CFa" kind="relationship" relationship="rootViewController" id="OZZ-Uz-jWM"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zuf-sZ-oIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1532" y="-1161"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="GS4-We-W7d"/>
-    </inferredMetricsTieBreakers>
 </document>

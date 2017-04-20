@@ -74,10 +74,13 @@ class EmployeeLoginViewController: UIViewController {
                         } else {
                             self.notifyUser("Authentication Successful",
                                             err: "You now have full access")
+                            
                         }
                     }
+
+                   self.navigateTo()
             })
-            
+           
         } else {
             // Device cannot use TouchID
             switch error!.code{
@@ -101,6 +104,13 @@ class EmployeeLoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func navigateTo()
+    {
+        if let loggedInSuccess = storyboard?.instantiateViewController(withIdentifier: "employeeMainScreen"){
+            self.navigationController?.pushViewController(loggedInSuccess, animated: true)
+        }
     }
     
 

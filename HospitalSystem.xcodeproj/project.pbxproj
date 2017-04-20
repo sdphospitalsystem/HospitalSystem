@@ -247,7 +247,7 @@
 				TargetAttributes = {
 					012C10B71E8C2F25001200E2 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = F9TN69F7WL;
+						DevelopmentTeam = 629A6E4ATS;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -533,7 +533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = F9TN69F7WL;
+				DEVELOPMENT_TEAM = 629A6E4ATS;
 				INFOPLIST_FILE = HospitalSystem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -551,7 +551,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = F9TN69F7WL;
+				DEVELOPMENT_TEAM = 629A6E4ATS;
 				INFOPLIST_FILE = HospitalSystem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
