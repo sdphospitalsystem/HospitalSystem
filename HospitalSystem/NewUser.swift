@@ -13,7 +13,10 @@ import UIKit
 class NewUser: UIViewController, UITextFieldDelegate
 {
 
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var chooseImage: UIButton!
+    
     var NAME:String = ""
     var PASS:String=""
     var ADDR:String=""
@@ -32,6 +35,9 @@ class NewUser: UIViewController, UITextFieldDelegate
     @IBOutlet weak var sex: UITextField!
  
 
+    @IBAction func chooseImage(_ sender: UIButton) {
+        
+    }
     
     @IBAction func registerRFID(_ sender: Any) {
         UID = Scanner.getUID()

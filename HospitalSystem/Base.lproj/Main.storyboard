@@ -256,7 +256,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-1X-TwW">
-                                <rect key="frame" x="16" y="352" width="343" height="81"/>
+                                <rect key="frame" x="16" y="352" width="343" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Please Scan RFID Tag"/>
@@ -313,6 +313,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0F-go-PG1">
+                                <rect key="frame" x="16" y="402" width="343" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Choose Image from Library"/>
+                                <connections>
+                                    <action selector="chooseImage:" destination="JC8-x9-v9R" eventType="touchUpInside" id="zuJ-7R-dV2"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAk-7z-ElK">
+                                <rect key="frame" x="16" y="64" width="343" height="330"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPt-kc-ye9">
                                 <rect key="frame" x="79" y="609" width="217" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -336,6 +348,7 @@
                         <outlet property="addr" destination="HMu-f9-8B6" id="V6z-1O-1em"/>
                         <outlet property="continueButton" destination="TkO-1X-TwW" id="4YG-zv-IgE"/>
                         <outlet property="email" destination="1kx-fl-ocS" id="UMX-i9-XXA"/>
+                        <outlet property="imageView" destination="CAk-7z-ElK" id="qwa-C6-UGO"/>
                         <outlet property="name" destination="yJ0-GS-PJA" id="oLr-0l-gFW"/>
                         <outlet property="pass" destination="5G0-aM-UE9" id="wr0-p5-Qng"/>
                         <outlet property="phone" destination="RX6-GB-xVx" id="hAL-CE-gPQ"/>
