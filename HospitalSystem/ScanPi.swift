@@ -34,7 +34,7 @@ class ScanPi {
     func getWebUID()->String{
         var UID:String=""
         UID = self.getUID()
-        UID = UID.replacingOccurrences(of: "  ", with: "%20")
+        UID = UID.replacingOccurrences(of: "  ", with: "%20%20")
         return UID
     }
     

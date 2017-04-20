@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 
-class NewUser: UIViewController, UITextFieldDelegate
+class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
+
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var chooseImage: UIButton!
+
     
     var NAME:String = ""
     var PASS:String=""
@@ -36,8 +37,17 @@ class NewUser: UIViewController, UITextFieldDelegate
  
 
     @IBAction func chooseImage(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+            
+        }
         
     }
+    
     
     @IBAction func registerRFID(_ sender: Any) {
         UID = Scanner.getUID()
@@ -46,6 +56,7 @@ class NewUser: UIViewController, UITextFieldDelegate
     
     @IBAction func `continue`(_ sender: UIButton)
     {
+        //Sends the text data to register patients
         NAME = name.text!
         PASS = pass.text!
         ADDR = addr.text!
@@ -77,7 +88,21 @@ class NewUser: UIViewController, UITextFieldDelegate
         }
         task.resume()
         
+        
+    
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo:[NSObject : AnyObject]!) {
+        
+        imageView.image = image
+        self.dismiss(animated: true, completion: nil);
+    }
+    
+    func generateBoundaryString() -> String {
+        
+        return "Boundary-\(NSUUID().uuidString)"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

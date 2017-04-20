@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x9z-86-zV4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x9z-86-zV4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -256,7 +256,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-1X-TwW">
-                                <rect key="frame" x="16" y="352" width="343" height="42"/>
+                                <rect key="frame" x="16" y="338" width="343" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Please Scan RFID Tag"/>
@@ -313,24 +313,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0F-go-PG1">
-                                <rect key="frame" x="16" y="402" width="343" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Choose Image from Library"/>
-                                <connections>
-                                    <action selector="chooseImage:" destination="JC8-x9-v9R" eventType="touchUpInside" id="zuJ-7R-dV2"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAk-7z-ElK">
-                                <rect key="frame" x="16" y="64" width="343" height="330"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPt-kc-ye9">
-                                <rect key="frame" x="79" y="609" width="217" height="38"/>
+                                <rect key="frame" x="79" y="620" width="217" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="continue:" destination="JC8-x9-v9R" eventType="touchUpInside" id="0KL-Wk-jAU"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9r-1J-F1k">
+                                <rect key="frame" x="16" y="406" width="343" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0F-go-PG1">
+                                <rect key="frame" x="16" y="374" width="343" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Choose Image from Library"/>
+                                <connections>
+                                    <action selector="chooseImage:" destination="JC8-x9-v9R" eventType="touchUpInside" id="zuJ-7R-dV2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -340,7 +340,7 @@
                         <outlet property="addr" destination="HMu-f9-8B6" id="V6z-1O-1em"/>
                         <outlet property="continueButton" destination="TkO-1X-TwW" id="4YG-zv-IgE"/>
                         <outlet property="email" destination="1kx-fl-ocS" id="UMX-i9-XXA"/>
-                        <outlet property="imageView" destination="CAk-7z-ElK" id="qwa-C6-UGO"/>
+                        <outlet property="imageView" destination="B9r-1J-F1k" id="8He-8O-HvX"/>
                         <outlet property="name" destination="yJ0-GS-PJA" id="oLr-0l-gFW"/>
                         <outlet property="pass" destination="5G0-aM-UE9" id="wr0-p5-Qng"/>
                         <outlet property="phone" destination="RX6-GB-xVx" id="hAL-CE-gPQ"/>
@@ -350,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aF-3d-oaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="-535"/>
+            <point key="canvasLocation" x="589.60000000000002" y="-535.68215892053979"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="OF7-rh-LkC">
@@ -455,10 +455,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <connections>
-                        <outlet property="passwordTextField" destination="zR9-TO-e6w" id="Y0c-Kc-iaY"/>
-                        <outlet property="usernameTextField" destination="zR9-TO-e6w" id="6OS-Jk-4qE"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kh8-bp-Pyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

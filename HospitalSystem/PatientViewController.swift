@@ -42,8 +42,8 @@ class PatientViewController: UIViewController {
             Add = JSON["Address"] as! String
 //            HR = JSON["HeartRate"] as! String
 //            BT = JSON ["BodyTemp"] as! String
-            DA = JSON ["DateAdmitted"] as! String
-            RoomType = JSON["RID"] as! String
+//            DA = JSON ["DateAdmitted"] as! String
+//            RoomType = JSON["RID"] as! String
             nameLabel.text = Name
             sexLabel.text = Sex
             addLabel.text = Add
