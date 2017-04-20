@@ -22,6 +22,7 @@
 		012C10D11E8C2F25001200E2 /* HospitalSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10D01E8C2F25001200E2 /* HospitalSystemTests.swift */; };
 		012C10DC1E8C2F25001200E2 /* HospitalSystemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10DB1E8C2F25001200E2 /* HospitalSystemUITests.swift */; };
 		01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F838E91E9A90750025FD64 /* ScanPi.swift */; };
+		B70520061EA92C0D0037A6F3 /* EmployeeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */; };
 		B7DDFFA21EA7EDA6003F7815 /* Pictures in Resources */ = {isa = PBXBuildFile; fileRef = B7DDFFA11EA7EDA6003F7815 /* Pictures */; };
 		B7DDFFA41EA7F1FD003F7815 /* HMTS_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7DDFFA31EA7F1FD003F7815 /* HMTS_Logo.png */; };
 		E5B2CE265B0186473CB77856 /* libPods-HospitalSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA28BD7CE7255FD025B53E5A /* libPods-HospitalSystem.a */; };
@@ -66,6 +67,7 @@
 		068D65190601CAA0A58B6B0B /* Pods-HospitalSystem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSystem.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSystem/Pods-HospitalSystem.debug.xcconfig"; sourceTree = "<group>"; };
 		37D6A7601A089AE235B6CA6C /* Pods-HospitalSystem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSystem.release.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSystem/Pods-HospitalSystem.release.xcconfig"; sourceTree = "<group>"; };
 		AA28BD7CE7255FD025B53E5A /* libPods-HospitalSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HospitalSystem.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeLoginViewController.swift; sourceTree = "<group>"; };
 		B7DDFFA11EA7EDA6003F7815 /* Pictures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pictures; sourceTree = "<group>"; };
 		B7DDFFA31EA7F1FD003F7815 /* HMTS_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HMTS_Logo.png; path = ../Pictures/HMTS_Logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 				012C10C71E8C2F25001200E2 /* Info.plist */,
 				01F838E31E9A8FFB0025FD64 /* HospitalSystem-Bridging-Header.h */,
 				011A3C391E9EBB5D003C77FC /* NewUser.swift */,
+				B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */,
 			);
 			path = HospitalSystem;
 			sourceTree = "<group>";
@@ -244,7 +247,7 @@
 				TargetAttributes = {
 					012C10B71E8C2F25001200E2 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 629A6E4ATS;
+						DevelopmentTeam = F9TN69F7WL;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -368,6 +371,7 @@
 				011A3C3A1E9EBB5D003C77FC /* NewUser.swift in Sources */,
 				012C10BC1E8C2F25001200E2 /* AppDelegate.swift in Sources */,
 				01228AD61E8D7264008C558C /* EmployeeViewController.swift in Sources */,
+				B70520061EA92C0D0037A6F3 /* EmployeeLoginViewController.swift in Sources */,
 				01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */,
 				01228AD21E8D6ED6008C558C /* PatientViewController.swift in Sources */,
 			);
@@ -529,8 +533,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 629A6E4ATS;
+				DEVELOPMENT_TEAM = F9TN69F7WL;
 				INFOPLIST_FILE = HospitalSystem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdp.HospitalSystem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -546,8 +551,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 629A6E4ATS;
+				DEVELOPMENT_TEAM = F9TN69F7WL;
 				INFOPLIST_FILE = HospitalSystem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdp.HospitalSystem;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -47,8 +47,8 @@ class PatientViewController: UIViewController {
             nameLabel.text = Name
             sexLabel.text = Sex
             addLabel.text = Add
-            hrLabel.text = HR
-            btLabel.text = BT
+//            hrLabel.text = HR
+//            btLabel.text = BT
             daLabel.text = DA
             roomtypeLabel.text = RoomType
         }
