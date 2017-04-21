@@ -20,7 +20,7 @@ class MakeAppointment: UIViewController {
     {
         let date = appDate.date
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD HH:MM:SS"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:MM:SS"
         let mysqlDate:String = dateFormatter.string(from: date)
         print(mysqlDate)
         let textResponse:String = ReasonForVisit.text!

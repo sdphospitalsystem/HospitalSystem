@@ -554,6 +554,7 @@
                     <connections>
                         <outlet property="password" destination="dZT-cS-lVz" id="ca8-xy-JhK"/>
                         <outlet property="username" destination="852-sB-4Jz" id="82Z-cV-KhS"/>
+                        <segue destination="oiV-BR-2nI" kind="show" identifier="LogInSegue" id="9je-F9-n2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nY-W9-46B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -603,7 +604,6 @@
         <!--New Appointment-->
         <scene sceneID="y7z-Wu-V5c">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HUL-HA-3Lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="New Appointment" id="C09-fE-ScO" customClass="MakeAppointment" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7xx-MI-Kwb"/>
@@ -652,6 +652,7 @@
                         <outlet property="appDate" destination="Xmm-2w-lLv" id="wVF-pb-Yko"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUL-HA-3Lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1869.5999999999999" y="-1184.257871064468"/>
         </scene>
@@ -689,7 +690,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cd-gC-mxP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="56.799999999999997" y="-925.18740629685169"/>
+            <point key="canvasLocation" x="57" y="-899"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="9je-F9-n2J"/>
+    </inferredMetricsTieBreakers>
 </document>

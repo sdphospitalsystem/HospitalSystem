@@ -18,6 +18,7 @@ class PatientLoginViewController: UIViewController
     @IBOutlet weak var password: UITextField!
     
     @IBAction func login(_ sender: UIButton) {
+        var userExists:String = ""
         USERNAME = username.text!
         PASSWORD = password.text!
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/iosLogin.php")
@@ -31,13 +32,25 @@ class PatientLoginViewController: UIViewController
                 print("error=\(error)")
                 return
             }
-            print("data = \(data)")
             
+            userExists = String(data: data!, encoding: .utf8)!
         }
         task.resume()
-        
-        
-        
+        if(userExists == "LOGGED IN")
+        {
+            //User Exists
+            self.performSegue(withIdentifier: "LogInSegue", sender: self)
+        }else
+        {
+            //User does not exist
+            let alert = UIAlertController(title: "Error", message: "Not a valid username/password combo", preferredStyle: .alert)
+            let OK = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+                print("OK")
+            })
+            alert.addAction(OK)
+            self.present(alert, animated: true, completion:nil)
+        }
+    
     }
     
     
