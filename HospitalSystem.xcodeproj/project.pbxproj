@@ -22,6 +22,7 @@
 		012C10D11E8C2F25001200E2 /* HospitalSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10D01E8C2F25001200E2 /* HospitalSystemTests.swift */; };
 		012C10DC1E8C2F25001200E2 /* HospitalSystemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10DB1E8C2F25001200E2 /* HospitalSystemUITests.swift */; };
 		01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F838E91E9A90750025FD64 /* ScanPi.swift */; };
+		01FCEB7A1EA9407700284CEF /* PatientLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCEB791EA9407700284CEF /* PatientLoginViewController.swift */; };
 		B70520061EA92C0D0037A6F3 /* EmployeeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */; };
 		B7DDFFA21EA7EDA6003F7815 /* Pictures in Resources */ = {isa = PBXBuildFile; fileRef = B7DDFFA11EA7EDA6003F7815 /* Pictures */; };
 		B7DDFFA41EA7F1FD003F7815 /* HMTS_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7DDFFA31EA7F1FD003F7815 /* HMTS_Logo.png */; };
@@ -64,6 +65,7 @@
 		012C10DD1E8C2F25001200E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01F838E31E9A8FFB0025FD64 /* HospitalSystem-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HospitalSystem-Bridging-Header.h"; sourceTree = "<group>"; };
 		01F838E91E9A90750025FD64 /* ScanPi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanPi.swift; sourceTree = "<group>"; };
+		01FCEB791EA9407700284CEF /* PatientLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientLoginViewController.swift; sourceTree = "<group>"; };
 		068D65190601CAA0A58B6B0B /* Pods-HospitalSystem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSystem.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSystem/Pods-HospitalSystem.debug.xcconfig"; sourceTree = "<group>"; };
 		37D6A7601A089AE235B6CA6C /* Pods-HospitalSystem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSystem.release.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSystem/Pods-HospitalSystem.release.xcconfig"; sourceTree = "<group>"; };
 		AA28BD7CE7255FD025B53E5A /* libPods-HospitalSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HospitalSystem.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 				01F838E31E9A8FFB0025FD64 /* HospitalSystem-Bridging-Header.h */,
 				011A3C391E9EBB5D003C77FC /* NewUser.swift */,
 				B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */,
+				01FCEB791EA9407700284CEF /* PatientLoginViewController.swift */,
 			);
 			path = HospitalSystem;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FCEB7A1EA9407700284CEF /* PatientLoginViewController.swift in Sources */,
 				012C10BE1E8C2F25001200E2 /* ViewController.swift in Sources */,
 				011A3C3A1E9EBB5D003C77FC /* NewUser.swift in Sources */,
 				012C10BC1E8C2F25001200E2 /* AppDelegate.swift in Sources */,

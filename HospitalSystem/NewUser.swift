@@ -89,6 +89,7 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
         task.resume()
         
         
+        
     
     }
     
