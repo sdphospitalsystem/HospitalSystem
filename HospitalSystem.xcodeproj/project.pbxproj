@@ -21,6 +21,10 @@
 		012C10C61E8C2F25001200E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012C10C41E8C2F25001200E2 /* LaunchScreen.storyboard */; };
 		012C10D11E8C2F25001200E2 /* HospitalSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10D01E8C2F25001200E2 /* HospitalSystemTests.swift */; };
 		012C10DC1E8C2F25001200E2 /* HospitalSystemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C10DB1E8C2F25001200E2 /* HospitalSystemUITests.swift */; };
+		013ECEDF1EAAD084005AB98C /* patientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013ECEDE1EAAD084005AB98C /* patientCell.swift */; };
+		013ECEE11EAAD3A1005AB98C /* EmployeePortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013ECEE01EAAD3A1005AB98C /* EmployeePortal.swift */; };
+		013ECEE31EAAD793005AB98C /* appCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013ECEE21EAAD793005AB98C /* appCell.swift */; };
+		013ECEEB1EAAEC87005AB98C /* AllPatientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013ECEEA1EAAEC87005AB98C /* AllPatientTableViewController.swift */; };
 		01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F838E91E9A90750025FD64 /* ScanPi.swift */; };
 		01FCEB7A1EA9407700284CEF /* PatientLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCEB791EA9407700284CEF /* PatientLoginViewController.swift */; };
 		01FCEB7C1EAA5B3100284CEF /* MakeAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCEB7B1EAA5B3100284CEF /* MakeAppointment.swift */; };
@@ -64,6 +68,10 @@
 		012C10D71E8C2F25001200E2 /* HospitalSystemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HospitalSystemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		012C10DB1E8C2F25001200E2 /* HospitalSystemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalSystemUITests.swift; sourceTree = "<group>"; };
 		012C10DD1E8C2F25001200E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		013ECEDE1EAAD084005AB98C /* patientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = patientCell.swift; sourceTree = "<group>"; };
+		013ECEE01EAAD3A1005AB98C /* EmployeePortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeePortal.swift; sourceTree = "<group>"; };
+		013ECEE21EAAD793005AB98C /* appCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = appCell.swift; sourceTree = "<group>"; };
+		013ECEEA1EAAEC87005AB98C /* AllPatientTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPatientTableViewController.swift; sourceTree = "<group>"; };
 		01F838E31E9A8FFB0025FD64 /* HospitalSystem-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HospitalSystem-Bridging-Header.h"; sourceTree = "<group>"; };
 		01F838E91E9A90750025FD64 /* ScanPi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanPi.swift; sourceTree = "<group>"; };
 		01FCEB791EA9407700284CEF /* PatientLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientLoginViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +151,10 @@
 				B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */,
 				01FCEB791EA9407700284CEF /* PatientLoginViewController.swift */,
 				01FCEB7B1EAA5B3100284CEF /* MakeAppointment.swift */,
+				013ECEDE1EAAD084005AB98C /* patientCell.swift */,
+				013ECEE01EAAD3A1005AB98C /* EmployeePortal.swift */,
+				013ECEE21EAAD793005AB98C /* appCell.swift */,
+				013ECEEA1EAAEC87005AB98C /* AllPatientTableViewController.swift */,
 			);
 			path = HospitalSystem;
 			sourceTree = "<group>";
@@ -374,14 +386,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				01FCEB7A1EA9407700284CEF /* PatientLoginViewController.swift in Sources */,
+				013ECEDF1EAAD084005AB98C /* patientCell.swift in Sources */,
 				012C10BE1E8C2F25001200E2 /* ViewController.swift in Sources */,
 				011A3C3A1E9EBB5D003C77FC /* NewUser.swift in Sources */,
 				012C10BC1E8C2F25001200E2 /* AppDelegate.swift in Sources */,
+				013ECEE31EAAD793005AB98C /* appCell.swift in Sources */,
 				01228AD61E8D7264008C558C /* EmployeeViewController.swift in Sources */,
 				B70520061EA92C0D0037A6F3 /* EmployeeLoginViewController.swift in Sources */,
 				01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */,
 				01FCEB7C1EAA5B3100284CEF /* MakeAppointment.swift in Sources */,
 				01228AD21E8D6ED6008C558C /* PatientViewController.swift in Sources */,
+				013ECEE11EAAD3A1005AB98C /* EmployeePortal.swift in Sources */,
+				013ECEEB1EAAEC87005AB98C /* AllPatientTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
