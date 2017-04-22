@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x9z-86-zV4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x9z-86-zV4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -134,12 +134,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3190" y="196"/>
+            <point key="canvasLocation" x="2364" y="565"/>
         </scene>
         <!--Home-->
         <scene sceneID="Sb0-8E-RrI">
             <objects>
-                <viewController storyboardIdentifier="employeeMainScreen" id="vct-4B-MWt" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="employeeMainScreen" id="vct-4B-MWt" customClass="LogOutViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mo8-UE-RnW"/>
                         <viewControllerLayoutGuide type="bottom" id="ND5-Dt-SOe"/>
@@ -180,14 +180,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Patient"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qab-ok-yLg">
+                                <rect key="frame" x="96" y="601" width="183" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.74509803919999995" green="0.85882352939999995" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="employeeLogOutAlert:" destination="vct-4B-MWt" eventType="touchUpInside" id="CY1-Z3-OZo"/>
+                                    <action selector="patientLogOutAlert:" destination="7FN-8V-k5q" eventType="touchUpInside" id="2BH-JM-k1g"/>
+                                    <action selector="scheduleApp:" destination="C09-fE-ScO" eventType="touchUpInside" id="Uzj-1Q-W9N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="JyG-1e-yy4"/>
+                    <connections>
+                        <segue destination="x9z-86-zV4" kind="show" identifier="employeeLogOutSegue" id="THB-RS-Q9R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjQ-Id-UlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1532" y="442"/>
+            <point key="canvasLocation" x="1100" y="865"/>
         </scene>
         <!--Employee-->
         <scene sceneID="kVY-WR-mqe">
@@ -241,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pwq-sD-Tio" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3190" y="954"/>
+            <point key="canvasLocation" x="2364" y="1426"/>
         </scene>
         <!--New User-->
         <scene sceneID="Tvo-ge-iVr">
@@ -319,6 +335,7 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="continue:" destination="JC8-x9-v9R" eventType="touchUpInside" id="0KL-Wk-jAU"/>
+                                    <segue destination="fZe-NB-hKM" kind="show" id="m9h-cm-vM1"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9r-1J-F1k">
@@ -358,6 +375,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aF-3d-oaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="57" y="-107"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nRA-QW-Txn">
+            <objects>
+                <viewController id="fZe-NB-hKM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sfe-w6-1uy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fh5-4M-pg1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xF7-Xj-0ha">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Successfully Registered!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjU-cD-Y0j">
+                                <rect key="frame" x="16" y="191" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOR-af-qtD">
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue to Patient Portal"/>
+                                <connections>
+                                    <segue destination="oiV-BR-2nI" kind="show" id="mhr-NS-tSa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176470588238" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OCj-fx-uTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="853.60000000000002" y="-107.49625187406298"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="OF7-rh-LkC">
@@ -456,7 +508,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vct-4B-MWt" kind="presentation" identifier="loginSegue" id="U8a-Sk-kzr"/>
+                                    <segue destination="Mr2-O5-vw4" kind="show" id="gib-8I-5AO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZ4-T2-J5c">
@@ -473,10 +525,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <segue destination="Mr2-O5-vw4" kind="show" identifier="employeeLogInSegue" id="2m5-qZ-caD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kh8-bp-Pyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865" y="443"/>
+            <point key="canvasLocation" x="-866" y="865"/>
         </scene>
         <!--Patient Login-->
         <scene sceneID="gUn-hw-v8z">
@@ -531,7 +586,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-gS-9O9">
-                                <rect key="frame" x="140" y="413" width="94" height="30"/>
+                                <rect key="frame" x="140" y="607" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Register">
@@ -541,8 +596,19 @@
                                     <segue destination="JC8-x9-v9R" kind="presentation" id="gbZ-gh-V4o"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npg-t1-oBa">
-                                <rect key="frame" x="178" y="370" width="19" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOw-z0-x3L">
+                                <rect key="frame" x="140" y="401" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.74509803919999995" green="0.85882352939999995" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="TouchID Login">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchIDLogin:" destination="qZL-64-aw9" eventType="touchUpInside" id="HFG-OL-pjH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgE-xb-zyq">
+                                <rect key="frame" x="16" y="568" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -558,12 +624,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nY-W9-46B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865" y="-534"/>
+            <point key="canvasLocation" x="-866.39999999999998" y="-534.78260869565224"/>
         </scene>
         <!--Patient Portal-->
         <scene sceneID="Waz-Jw-3wg">
             <objects>
-                <viewController id="7FN-8V-k5q" sceneMemberID="viewController">
+                <viewController id="7FN-8V-k5q" customClass="LogOutViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q8f-8X-NT0"/>
                         <viewControllerLayoutGuide type="bottom" id="WiY-TR-S1j"/>
@@ -591,10 +657,25 @@
                                     <action selector="scheduleApp:" destination="C09-fE-ScO" eventType="touchUpInside" id="tjC-Jh-A3B"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJG-Zd-UfJ">
+                                <rect key="frame" x="96" y="603" width="183" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.74509803919999995" green="0.85882352939999995" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="patientLogOutAlert:" destination="7FN-8V-k5q" eventType="touchUpInside" id="PO6-6b-MSr"/>
+                                    <action selector="scheduleApp:" destination="C09-fE-ScO" eventType="touchUpInside" id="dZZ-XK-7Kr"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92941176470588238" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Patient Portal" id="nRr-cO-aMF"/>
+                    <connections>
+                        <segue destination="x9z-86-zV4" kind="show" identifier="patientLogOutSegue" id="Qwy-hd-Gay"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCX-76-uoz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -603,7 +684,6 @@
         <!--New Appointment-->
         <scene sceneID="y7z-Wu-V5c">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HUL-HA-3Lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="New Appointment" id="C09-fE-ScO" customClass="MakeAppointment" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7xx-MI-Kwb"/>
@@ -652,6 +732,7 @@
                         <outlet property="appDate" destination="Xmm-2w-lLv" id="wVF-pb-Yko"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUL-HA-3Lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1869.5999999999999" y="-1184.257871064468"/>
         </scene>
@@ -691,5 +772,28 @@
             </objects>
             <point key="canvasLocation" x="56.799999999999997" y="-925.18740629685169"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ni0-h8-Oqq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mr2-O5-vw4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ywc-cj-HTj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vct-4B-MWt" kind="relationship" relationship="rootViewController" id="OQR-QI-UXY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2aC-hT-j8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="57" y="865"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="THB-RS-Q9R"/>
+        <segue reference="2m5-qZ-caD"/>
+        <segue reference="CMH-CK-CwH"/>
+    </inferredMetricsTieBreakers>
 </document>

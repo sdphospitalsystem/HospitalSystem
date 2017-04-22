@@ -74,11 +74,11 @@ class EmployeeLoginViewController: UIViewController {
                         } else {
                             self.notifyUser("Authentication Successful",
                                             err: "You now have full access")
+                            self.performSegue(withIdentifier: "employeeLogInSegue", sender: self)
                             
                         }
                     }
-
-                   self.navigateTo()
+                    
             })
            
         } else {
@@ -106,12 +106,6 @@ class EmployeeLoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func navigateTo()
-    {
-        if let loggedInSuccess = storyboard?.instantiateViewController(withIdentifier: "employeeMainScreen"){
-            self.navigationController?.pushViewController(loggedInSuccess, animated: true)
-        }
-    }
     
 
     /*
