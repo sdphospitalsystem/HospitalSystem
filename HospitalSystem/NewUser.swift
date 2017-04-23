@@ -77,6 +77,9 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
         SEX = sex.text!
         print("Sending Data")
         var request = URLRequest(url: NSURL(string: "http://sdphospitalsystem.uconn.edu/register_patient.php")! as URL)
+        progress.isHidden = false
+        progress.progress=0
+        progress.progress+=0.1
         progress.progress+=0.2
         request.httpMethod = "POST"
         
@@ -125,10 +128,10 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
     func ImageUploadRequest(pictureToUpload: UIImage)
     {
         progress.progress+=0.1
-        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/iosImage.php")
+        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/iosImage.php")
         var request = URLRequest(url: _URL!)
         request.httpMethod="POST";
-        let param = ["name" : NAME]
+        let param = ["name" : USERNAME]
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         let imageData = UIImageJPEGRepresentation(pictureToUpload, 0.9) //sending image as JPG
@@ -180,7 +183,7 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
                 body.appendString(string: "\(value)\r\n")
             }
         }
-        let filename = "user-profile-ios.jpg"
+        let filename = self.USERNAME + ".jpeg"
         let mimetype = "image/jpg"
         body.appendString(string: "--\(boundary)\r\n")
         body.appendString(string: "Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
@@ -196,7 +199,8 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        activity.hidesWhenStopped=true
+        progress.isHidden=true
     }
 
     override func didReceiveMemoryWarning() {

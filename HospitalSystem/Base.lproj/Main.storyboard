@@ -218,14 +218,16 @@
                                             <color key="backgroundColor" red="0.74369739440000004" green="0.85998115500000005" blue="0.92062014250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="cancelAppButton" destination="paN-wt-ZAd" id="j0P-8v-9hW"/>
-                                            <outlet property="contactPatientButton" destination="Bxw-lu-9az" id="Sxm-tg-SWe"/>
                                             <outlet property="dateLabel" destination="rO3-cc-aef" id="ha7-uL-GH3"/>
                                             <outlet property="patientName" destination="jb4-s2-FRY" id="4Hp-dP-EKZ"/>
                                             <outlet property="reasonLabel" destination="gMV-ZR-ZTO" id="veg-uS-DI4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fFN-HT-waN" id="D3k-hJ-th1"/>
+                                    <outlet property="delegate" destination="fFN-HT-waN" id="LlW-8D-l79"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l25-Jn-NlC">
                                 <rect key="frame" x="209" y="634" width="116" height="25"/>
@@ -234,7 +236,6 @@
                                 <state key="normal" title="Scan RFID Band"/>
                                 <connections>
                                     <action selector="scanBand:" destination="fFN-HT-waN" eventType="touchUpInside" id="x4i-Ao-f3l"/>
-                                    <action selector="scanPatient:" destination="fFN-HT-waN" eventType="touchUpInside" id="Niq-L0-clQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGr-YK-wOj">
@@ -244,7 +245,7 @@
                                 <state key="normal" title="Patient Directory"/>
                                 <connections>
                                     <action selector="patientDirectory:" destination="fFN-HT-waN" eventType="touchUpInside" id="iVJ-kX-j4Y"/>
-                                    <segue destination="7yQ-jw-cdJ" kind="show" identifier="AllPatientSegue" id="ag0-hz-3sp"/>
+                                    <segue destination="7yQ-jw-cdJ" kind="show" id="qRc-DF-G9r"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AM1-Z0-rjC">
@@ -257,10 +258,8 @@
                     <navigationItem key="navigationItem" title="Employee Portal" id="4bA-GF-MOD"/>
                     <connections>
                         <outlet property="activity" destination="AM1-Z0-rjC" id="r1Z-Mz-64G"/>
-                        <outlet property="appView" destination="l00-ij-dW9" id="nsm-Em-hD3"/>
                         <outlet property="dateLabel" destination="1Aj-ZI-WaL" id="aKi-xS-29x"/>
-                        <outlet property="patientDirectoryButton" destination="mGr-YK-wOj" id="2xd-VM-ntN"/>
-                        <outlet property="scanRfidBandButton" destination="l25-Jn-NlC" id="oua-Pw-ndT"/>
+                        <outlet property="tableView" destination="l00-ij-dW9" id="sYi-pX-UU4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VTx-p9-moe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,7 +275,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="patientDetail" selectionStyle="default" indentationWidth="10" rowHeight="221" id="FJW-Hk-3Xm" customClass="patientCell" customModule="HospitalSystem" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="patientDetail" selectionStyle="default" indentationWidth="10" reuseIdentifier="patientDetail" rowHeight="221" id="FJW-Hk-3Xm" customClass="patientCell" customModule="HospitalSystem" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="221"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJW-Hk-3Xm" id="AbY-Bl-ZKj">
@@ -406,6 +405,9 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.74369739440000004" green="0.85998115500000005" blue="0.92062014250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES" updatesFrequently="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="addLabel" destination="jXg-Ig-jv3" id="6L4-Tm-9GB"/>
                                     <outlet property="btLabel" destination="x2e-y2-JoB" id="r3w-WH-q55"/>
@@ -423,13 +425,10 @@
                             <outlet property="delegate" destination="7yQ-jw-cdJ" id="tWk-re-oLE"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="patient" destination="FJW-Hk-3Xm" id="Gln-Ld-Oay"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybn-a6-Afr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1487.2" y="1725.7871064467768"/>
+            <point key="canvasLocation" x="983" y="1675"/>
         </scene>
         <!--Home-->
         <scene sceneID="Sb0-8E-RrI">
@@ -761,7 +760,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vct-4B-MWt" kind="presentation" identifier="loginSegue" id="U8a-Sk-kzr"/>
+                                    <action selector="employeeLoginButton:" destination="qZL-64-aw9" eventType="touchUpInside" id="vXJ-eW-wZc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZ4-T2-J5c">
@@ -778,6 +777,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="password" destination="zR9-TO-e6w" id="1Pn-xL-1LG"/>
+                        <outlet property="username" destination="u9Y-EF-iOz" id="sJ5-4e-sRx"/>
+                        <segue destination="xDu-nN-E3a" kind="show" identifier="EmployeeLoginSegue" id="YaH-LR-cSi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kh8-bp-Pyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -869,7 +873,7 @@
         <!--Patient Portal-->
         <scene sceneID="Waz-Jw-3wg">
             <objects>
-                <viewController id="7FN-8V-k5q" sceneMemberID="viewController">
+                <viewController id="7FN-8V-k5q" customClass="PatientPortal" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q8f-8X-NT0"/>
                         <viewControllerLayoutGuide type="bottom" id="WiY-TR-S1j"/>
@@ -879,32 +883,169 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BC-qU-dAB">
-                                <rect key="frame" x="96" y="134" width="183" height="30"/>
+                                <rect key="frame" x="16" y="174" width="153" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.65363338140000005" blue="0.43962728270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="titleShadowOffset" width="1" height="0.0"/>
                                 <state key="normal" title="Make Appointment"/>
                                 <connections>
                                     <segue destination="C09-fE-ScO" kind="show" id="lc2-Zr-VYd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHA-xl-e62">
-                                <rect key="frame" x="96" y="617" width="183" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anl-6J-aVr">
+                                <rect key="frame" x="16" y="72" width="343" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.74509803919999995" green="0.85882352939999995" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="39"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0V-Th-kZa">
+                                <rect key="frame" x="16" y="372" width="153" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.65363338140000005" blue="0.43962728270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="titleShadowOffset" width="1" height="0.0"/>
+                                <state key="normal" title="Settings"/>
                                 <connections>
-                                    <action selector="scheduleApp:" destination="C09-fE-ScO" eventType="touchUpInside" id="tjC-Jh-A3B"/>
+                                    <segue destination="9YW-vd-LaM" kind="show" id="OLU-Rh-Msk"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGK-8f-uD8">
+                                <rect key="frame" x="206" y="372" width="153" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.65363338140000005" blue="0.43962728270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="titleShadowOffset" width="1" height="0.0"/>
+                                <state key="normal" title="Contact Doctor"/>
+                                <connections>
+                                    <segue destination="gR6-5G-ucT" kind="show" id="VNw-ER-ZBk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVH-uN-E4p">
+                                <rect key="frame" x="16" y="555" width="343" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.5481292015" blue="0.47776050609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="titleShadowOffset" width="1" height="0.0"/>
+                                <state key="normal" title="Logout"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dad-h5-0ZL">
+                                <rect key="frame" x="206" y="174" width="153" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.65363338140000005" blue="0.43962728270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="titleShadowOffset" width="1" height="0.0"/>
+                                <state key="normal" title="Personal Info"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Patient Portal" id="nRr-cO-aMF"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="Anl-6J-aVr" id="URD-Uo-bZc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCX-76-uoz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="853.60000000000002" y="-925.18740629685169"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Pqn-We-XvY">
+            <objects>
+                <viewController id="9YW-vd-LaM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gwm-Jw-g8Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="ola-4L-yAS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BvW-w8-Bcs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COX-wh-ICM">
+                                <rect key="frame" x="16" y="64" width="343" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="39"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOq-Tz-Bos">
+                                <rect key="frame" x="16" y="153" width="343" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="em5-TS-Myd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1661.5999999999999" y="-787.55622188905556"/>
+        </scene>
+        <!--Contact Doctors-->
+        <scene sceneID="yti-4P-xP1">
+            <objects>
+                <tableViewController title="Contact Doctors" id="gR6-5G-ucT" customClass="ContactDoctorTableViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="kiJ-wN-Z9G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="ZdY-cr-u0c" customClass="doctorCell" customModule="HospitalSystem" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="84"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZdY-cr-u0c" id="L7w-yD-beq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ8-9N-syh">
+                                            <rect key="frame" x="8" y="16" width="154" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S23-GI-Hrt">
+                                            <rect key="frame" x="170" y="45" width="197" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.74369739440000004" green="0.85998115500000005" blue="0.92062014250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Email"/>
+                                            <connections>
+                                                <action selector="email:" destination="ZdY-cr-u0c" eventType="touchUpInside" id="fvE-x1-RpI"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HID-TS-i8P">
+                                            <rect key="frame" x="170" y="8" width="197" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.74369739440000004" green="0.85998115500000005" blue="0.92062014250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Call"/>
+                                            <connections>
+                                                <action selector="call:" destination="ZdY-cr-u0c" eventType="touchUpInside" id="khG-78-OyC"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="name" destination="YQ8-9N-syh" id="i5I-op-xxX"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gR6-5G-ucT" id="c4q-ci-m8G"/>
+                            <outlet property="delegate" destination="gR6-5G-ucT" id="QcK-SJ-pxs"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQz-5U-V9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1320.8" y="-33.733133433283363"/>
         </scene>
         <!--New Appointment-->
         <scene sceneID="y7z-Wu-V5c">
@@ -959,7 +1100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUL-HA-3Lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1869.5999999999999" y="-1184.257871064468"/>
+            <point key="canvasLocation" x="1673" y="-1523"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="100-37-IDh">
@@ -997,10 +1138,10 @@
             </objects>
             <point key="canvasLocation" x="57" y="-899"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--employeeNav-->
         <scene sceneID="Eas-8K-KJM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xDu-nN-E3a" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="employeePortal" title="employeeNav" automaticallyAdjustsScrollViewInsets="NO" id="xDu-nN-E3a" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BSb-He-txf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

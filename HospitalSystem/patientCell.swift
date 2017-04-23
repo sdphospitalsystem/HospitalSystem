@@ -10,7 +10,7 @@ import UIKit
 
 class patientCell: UITableViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var patientImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var addLabel: UILabel!
@@ -25,7 +25,6 @@ class patientCell: UITableViewCell {
     }
     @IBAction func deletePatient(_ sender: UIButton)
     {
-        
     }
     
     override func awakeFromNib() {

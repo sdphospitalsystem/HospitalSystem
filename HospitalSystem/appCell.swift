@@ -15,6 +15,15 @@ class appCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var reasonLabel: UILabel!
 
+
+    
+    var NAME:String = ""
+    var REASON:String = ""
+    var DATE:Date? = nil
+
+    
+    
+    
     @IBAction func contactPatient(_ sender: UIButton)
     {
         let alert = UIAlertController(title: "Contact Patient?", message: "Select EMail or Phone", preferredStyle: .alert)
@@ -46,11 +55,12 @@ class appCell: UITableViewCell {
         alert.addAction(No)
     }
     
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        //Code to get Name of patient with appointment, date of app, and reason from DB
-        //
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

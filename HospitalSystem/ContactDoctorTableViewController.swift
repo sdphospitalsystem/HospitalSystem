@@ -1,30 +1,33 @@
 //
-//  AllPatientTableViewController.swift
+//  ContactDoctorTableViewController.swift
 //  HospitalSystem
 //
-//  Created by Andras Palfi on 4/21/17.
+//  Created by Andras Palfi on 4/22/17.
 //  Copyright © 2017 Andras Palfi. All rights reserved.
 //
 
 import UIKit
 
-class AllPatientTableViewController: UITableViewController {
-
-    @IBOutlet weak var patient: patientCell!
-    var appData:Array<Dictionary<String,Any>>? = nil
-    var numberOfApps:Int = 0
+class ContactDoctorTableViewController: UITableViewController {
+    var contacts:Array<Dictionary<String,String>> = Array()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_all_patient.php")
+        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/contact_doctor.php")
         do {
-            let data =  try Data(contentsOf: _URL!)
-            let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Array<Dictionary<String, Any>>
-            self.appData = JSON
-            self.numberOfApps = (self.appData?.count)!
-        }catch{
-            print("Cannot download data")
+            let data = try Data(contentsOf: _URL!)
+            let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Array<Dictionary<String,String>>
+            var i = 0
+            while(i<=JSON.count)
+            {
+                contacts.append(JSON[i])
+                i += 1
+            }
+            
+            
+        } catch {
+            print("Error downlading data")
         }
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,49 +42,17 @@ class AllPatientTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
+    override func numberOfSections(in tableView: UITableView) -> Int {return 1}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.numberOfApps
-    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return contacts.count}
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "patientDetail", for: indexPath) as! patientCell
         let row = indexPath.row
-        cell.addLabel.text = self.appData?[row]["Address"]as! String
-        //cell.daLabel.text = self.appData?[row]["DateAdmitted"] as! String
-        //cell.rtLabel.text = self.appData?[row]["LoginAs"] as! String
-        cell.sexLabel.text = self.appData?[row]["Sex"] as! String
-        cell.nameLabel.text = self.appData?[row]["PName"] as! String
-        
-        let uname = self.appData?[row]["PUsername"] as! String
-        let picturePath:String = uname+".jpeg"
-        let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
-        let session = URLSession(configuration: .default)
-        let picTask = session.dataTask(with: imageURL) { (data,response,error) in
-            if let e = error {
-                print("ERROR: \(e)")
-            }else{
-                if let imageData = data{
-                    let IMAGE = UIImage(data: imageData)
-                    
-                    cell.imageView?.image = IMAGE //set cell image to picture from url
-                    cell.layoutIfNeeded()
-                    
-                }else
-                {
-                    print("Could not get image")
-                }
-            }
-            
-        }
-        picTask.resume()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "doctorCell", for: indexPath)
+
         // Configure the cell...
+        
 
         return cell
     }

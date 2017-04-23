@@ -10,7 +10,11 @@ import UIKit
 import LocalAuthentication
 
 class EmployeeLoginViewController: UIViewController {
-
+    var USERNAME:String = ""
+    var PASSWORD:String = ""
+    
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +35,43 @@ class EmployeeLoginViewController: UIViewController {
                      completion: nil)
     }
     
+    @IBAction func employeeLoginButton(_ sender: UIButton)
+    {
+        var userExists:String = ""
+        self.USERNAME = username.text!
+        self.PASSWORD = password.text!
+        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/iosLogin.php")
+        var request = URLRequest(url: _URL!)
+        request.httpMethod="POST"
+        let postString = "type=Doctor&uname=\(USERNAME)&password=\(PASSWORD)"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            userExists = String(data: data!, encoding: .utf8)!
+            if(userExists == "LOGGED IN")
+            {
+                //User Exists
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "EmployeeLoginSegue", sender: self)
+                }
+            }else
+            {
+                //User does not exist
+                let alert = UIAlertController(title: "Error", message: "Not a valid username/password combo", preferredStyle: .alert)
+                let OK = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+                    print("OK")
+                })
+                alert.addAction(OK)
+                self.present(alert, animated: true, completion:nil)
+            }
+
+        }
+        task.resume()
+    }
     
     @IBAction func touchIDLogin(_ sender: Any) {
         
@@ -108,7 +149,7 @@ class EmployeeLoginViewController: UIViewController {
     
     func navigateTo()
     {
-        if let loggedInSuccess = storyboard?.instantiateViewController(withIdentifier: "employeeMainScreen"){
+        if let loggedInSuccess = storyboard?.instantiateViewController(withIdentifier: "EmployeePortal"){
             self.navigationController?.pushViewController(loggedInSuccess, animated: true)
         }
     }

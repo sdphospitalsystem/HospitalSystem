@@ -24,7 +24,7 @@ class PatientLoginViewController: UIViewController
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/iosLogin.php")
         var request = URLRequest(url: _URL!)
         request.httpMethod="POST"
-        let postString = "uname=\(USERNAME)&password=\(PASSWORD)"
+        let postString = "type=Patient&uname=\(USERNAME)&password=\(PASSWORD)"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
