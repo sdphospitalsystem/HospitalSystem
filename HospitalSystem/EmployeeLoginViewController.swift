@@ -115,11 +115,11 @@ class EmployeeLoginViewController: UIViewController {
                         } else {
                             self.notifyUser("Authentication Successful",
                                             err: "You now have full access")
+                            self.performSegue(withIdentifier: "employeeLogInSegue", sender: self)
                             
                         }
                     }
-
-                   self.navigateTo()
+                    
             })
            
         } else {

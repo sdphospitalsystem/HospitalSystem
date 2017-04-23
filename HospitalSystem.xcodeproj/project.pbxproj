@@ -32,6 +32,7 @@
 		01FCEB7A1EA9407700284CEF /* PatientLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCEB791EA9407700284CEF /* PatientLoginViewController.swift */; };
 		01FCEB7C1EAA5B3100284CEF /* MakeAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCEB7B1EAA5B3100284CEF /* MakeAppointment.swift */; };
 		B70520061EA92C0D0037A6F3 /* EmployeeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */; };
+		B75200371EAA902A005FEAE0 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75200361EAA902A005FEAE0 /* LogOutViewController.swift */; };
 		B7DDFFA21EA7EDA6003F7815 /* Pictures in Resources */ = {isa = PBXBuildFile; fileRef = B7DDFFA11EA7EDA6003F7815 /* Pictures */; };
 		B7DDFFA41EA7F1FD003F7815 /* HMTS_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7DDFFA31EA7F1FD003F7815 /* HMTS_Logo.png */; };
 		E5B2CE265B0186473CB77856 /* libPods-HospitalSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA28BD7CE7255FD025B53E5A /* libPods-HospitalSystem.a */; };
@@ -86,6 +87,7 @@
 		37D6A7601A089AE235B6CA6C /* Pods-HospitalSystem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSystem.release.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSystem/Pods-HospitalSystem.release.xcconfig"; sourceTree = "<group>"; };
 		AA28BD7CE7255FD025B53E5A /* libPods-HospitalSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HospitalSystem.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B70520051EA92C0D0037A6F3 /* EmployeeLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeLoginViewController.swift; sourceTree = "<group>"; };
+		B75200361EAA902A005FEAE0 /* LogOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
 		B7DDFFA11EA7EDA6003F7815 /* Pictures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pictures; sourceTree = "<group>"; };
 		B7DDFFA31EA7F1FD003F7815 /* HMTS_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HMTS_Logo.png; path = ../Pictures/HMTS_Logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -405,6 +407,7 @@
 				B70520061EA92C0D0037A6F3 /* EmployeeLoginViewController.swift in Sources */,
 				01F838EA1E9A90750025FD64 /* ScanPi.swift in Sources */,
 				01FCEB7C1EAA5B3100284CEF /* MakeAppointment.swift in Sources */,
+				B75200371EAA902A005FEAE0 /* LogOutViewController.swift in Sources */,
 				01228AD21E8D6ED6008C558C /* PatientViewController.swift in Sources */,
 				013ECEE11EAAD3A1005AB98C /* EmployeePortal.swift in Sources */,
 				013ECEEB1EAAEC87005AB98C /* AllPatientTableViewController.swift in Sources */,
