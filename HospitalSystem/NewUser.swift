@@ -104,6 +104,7 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
             
         }
         task.resume()
+        
         progress.progress+=0.2
         //Upload the image data
         let IMAGE:UIImage = imageView.image!

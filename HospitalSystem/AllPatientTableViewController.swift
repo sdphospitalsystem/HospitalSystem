@@ -18,6 +18,7 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
     var Name:String = ""
     var Email:String = ""
     var Phone:String = ""
+    var PID:String = ""
     
     @IBAction func deletePatientClicked(_ sender: Any) {
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/remove_patient.php")
@@ -84,6 +85,8 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.allowsSelection = false
+        tableView.allowsSelectionDuringEditing = false
         self.tableView.layoutIfNeeded()
         //self.tableView.allowsSelection = false
         self.tableView.reloadData()
@@ -136,8 +139,9 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         cell.Name = self.appData?[row]["PName"] as! String
         let uname = self.appData?[row]["PUsername"] as! String
         self.Name = self.appData?[row]["PName"] as! String
+        var _pid = self.appData?[row]["PID"] as! String
         DispatchQueue.main.async {
-            let picturePath:String = uname+".jpeg"
+            let picturePath:String = _pid + ".jpeg"
             let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
             let session = URLSession(configuration: .default)
             let picTask = session.dataTask(with: imageURL) { (data,response,error) in
@@ -146,7 +150,9 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
                 }else{
                     if let imageData = data{
                         let IMAGE = UIImage(data: imageData)
-                        cell.imageView?.image = IMAGE //set cell image to picture from url
+                        cell.patientImage?.image = IMAGE //set cell image to picture from url
+                        cell.setNeedsLayout()
+                        cell.layoutIfNeeded()
                     }else
                     {
                         print("Could not get image")
@@ -160,6 +166,38 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         cell.setNeedsLayout()
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.delete)
+        {
+            let currentRowToDelete = indexPath.row
+            let currentPatientToDelete = self.appData?[currentRowToDelete]["pName"] as! String
+            self.appData?.remove(at: currentRowToDelete) //actually delete it from data
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+            let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/remove_patient.php")
+            var request = URLRequest(url: _URL!)
+            request.httpMethod="POST"
+            let postString = "name=\(currentPatientToDelete)"
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            let task = URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                if error != nil {
+                    print("error=\(error)")
+                    return
+                }
+                do{
+                    print(String(data: data!, encoding: .utf8))
+                }catch{
+                    print("ERROR DOWNLOADING JSON")
+                }
+            }
+            task.resume()
+        }
+    }
+
     
     //function to send emails
     func sendEmail(Recipient:String, Subject:String)

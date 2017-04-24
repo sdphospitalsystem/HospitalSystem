@@ -67,7 +67,7 @@ class appCell: UITableViewCell, MFMailComposeViewControllerDelegate {
         contactAlert.addAction(_phone)
         contactAlert.addAction(_email)
         DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
+            // UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
             UIApplication.shared.keyWindow?.rootViewController?.present(contactAlert, animated: true, completion: nil)
         }
     }
@@ -96,34 +96,7 @@ class appCell: UITableViewCell, MFMailComposeViewControllerDelegate {
         controller.dismiss(animated: true, completion: nil)
     }
 
-    
-    @IBAction func cancelApp(_ sender: UIButton)
-    {
-        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/delete_appointment.php")
-        var request = URLRequest(url: _URL!)
-        request.httpMethod="POST"
-        let postString = "pName=\(self.patientName.text!)"
-        request.httpBody = postString.data(using: String.Encoding.utf8)
-        let task = URLSession.shared.dataTask(with: request) {
-            data, response, error in
-            if error != nil {
-                print("error=\(error)")
-                return
-            }
-            do{
-                print(String(data: data!, encoding: .utf8))
-            }catch{
-                print("ERROR DOWNLOADING JSON")
-            }
-        }
-        task.resume()
-        
-}
-    
-    
-    
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

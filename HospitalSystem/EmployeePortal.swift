@@ -65,10 +65,6 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func patientDirectory(_ sender: UIButton)
-    {
-        
-    }
     @IBAction func scanBand(_ sender: UIButton)
     {
         activity.startAnimating()

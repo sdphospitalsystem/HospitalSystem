@@ -115,7 +115,10 @@ class EmployeeLoginViewController: UIViewController {
                         } else {
                             self.notifyUser("Authentication Successful",
                                             err: "You now have full access")
-                            self.performSegue(withIdentifier: "employeeLogInSegue", sender: self)
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "EmployeeLoginSegue", sender: self)
+                            }
+                            
                             
                         }
                     }
