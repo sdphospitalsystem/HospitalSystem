@@ -17,48 +17,12 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var activity: UIActivityIndicatorView!
 
-    var appData:Array<Dictionary<String,Any>>? = nil
-    var numberOfApps:Int = 0
+    var appData:Array<Dictionary<String,String>> = Array(arrayLiteral: Dictionary<String,String>())
+    
     
     override func viewDidLoad() {
         //Set the date to whatever it is today:
         super.viewDidLoad()
-        
-        activity.hidesWhenStopped = true
-        //DELETE THIS AFTER TESTING
-        UserDefaults.standard.set("johndoe", forKey: "currentEmployee")
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        let date = dateFormatter.string(from: currentDate)
-        dateLabel.text = date
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func patientDirectory(_ sender: UIButton)
-    {
-        
-    }
-    @IBAction func scanBand(_ sender: UIButton)
-    {
-        activity.startAnimating()
-        //let webuid:String = scanner.getWebUID()
-        //get one patient and display in new view
-        
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        //Get this employees appointments
-        self.tableView.register(appCell.self, forCellReuseIdentifier: "appCell")
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
-        let currentUser = UserDefaults.standard.string(forKey: "currentEmployee")
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_app.php")
         var request = URLRequest(url: _URL!)
         request.httpMethod="POST"
@@ -71,11 +35,9 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             }
             do{
-                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<Dictionary<String,Any>>
-                
-                self.numberOfApps = JSON.count
+                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<Dictionary<String,String>>
+                print("JSON: \(JSON)")
                 self.appData = JSON
-                
                 
                 DispatchQueue.main.async(execute: {()-> Void in
                     self.tableView.reloadData()
@@ -86,7 +48,44 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         task.resume()
+
+        tableView.allowsSelection = false
+        tableView.allowsSelectionDuringEditing = false
+        //tableView.setEditing(true, animated: false)
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        let date = dateFormatter.string(from: currentDate)
+        dateLabel.text = date
+        self.tableView.setContentOffset(.zero, animated: true)
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func scanBand(_ sender: UIButton)
+    {
+        activity.startAnimating()
+        //let webuid:String = scanner.getWebUID()
+        //get one patient and display in new view
+        let Scanner:ScanPi = ScanPi()
+        activity.stopAnimating()
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "ScanRFIDSegue", sender: self)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //Get this employees appointments
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
+        activity.hidesWhenStopped = true
+        
+            }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,19 +95,59 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //The number of rows is equal to the amount of appointments the data returned:
-        return self.numberOfApps
+        return self.appData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "appCell", for: indexPath) as! appCell
         let row = indexPath.row
-   
-        cell.patientName.text = self.appData?[row]["pName"] as! String
-        cell.reasonLabel.text = self.appData?[row]["reason"] as! String
-        cell.dateLabel.text = self.appData?[row]["dat"] as! String
+        
+        if let currentName:String = self.appData[row]["pName"]!
+        {
+            cell.patientName.text = currentName        }
+        if let currentReason:String = self.appData[row]["reason"]!
+        {
+           cell.reasonLabel.text = currentReason
+        }
+        if let currentDate:String = self.appData[row]["date"]!
+        {
+            cell.dateLabel.text = currentDate
+        }
+        
+       return cell
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.delete)
+        {
+            let currentRowToDelete = indexPath.row
+            let currentAppToDelete = self.appData[currentRowToDelete]["pName"] as! String
+            self.appData.remove(at: currentRowToDelete) //actually delete it from data
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+            let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/delete_appointment.php")
+            var request = URLRequest(url: _URL!)
+            request.httpMethod="POST"
+            let postString = "pName=\(currentAppToDelete)"
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            let task = URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                if error != nil {
+                    print("error=\(error)")
+                    return
+                }
+                do{
+                    print(String(data: data!, encoding: .utf8))
+                }catch{
+                    print("ERROR DOWNLOADING JSON")
+                }
+            }
+            task.resume()
+            
+        }
+    }
         
     
-        return cell
-    }
     
 
 }
