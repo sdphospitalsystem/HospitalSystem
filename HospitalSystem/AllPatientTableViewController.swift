@@ -15,6 +15,9 @@ class AllPatientTableViewController: UITableViewController {
     var numberOfApps:Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.layoutIfNeeded()
+        //self.tableView.allowsSelection = false
+        self.tableView.reloadData()
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_all_patient.php")
         do {
             let data =  try Data(contentsOf: _URL!)
@@ -60,29 +63,27 @@ class AllPatientTableViewController: UITableViewController {
         cell.nameLabel.text = self.appData?[row]["PName"] as! String
         
         let uname = self.appData?[row]["PUsername"] as! String
-        let picturePath:String = uname+".jpeg"
-        let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
-        let session = URLSession(configuration: .default)
-        let picTask = session.dataTask(with: imageURL) { (data,response,error) in
-            if let e = error {
-                print("ERROR: \(e)")
-            }else{
-                if let imageData = data{
-                    let IMAGE = UIImage(data: imageData)
-                    
-                    cell.imageView?.image = IMAGE //set cell image to picture from url
-                    cell.layoutIfNeeded()
-                    
-                }else
-                {
-                    print("Could not get image")
+        DispatchQueue.main.async {
+            let picturePath:String = uname+".jpeg"
+            let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
+            let session = URLSession(configuration: .default)
+            let picTask = session.dataTask(with: imageURL) { (data,response,error) in
+                if let e = error {
+                    print("ERROR: \(e)")
+                }else{
+                    if let imageData = data{
+                        let IMAGE = UIImage(data: imageData)
+                        cell.imageView?.image = IMAGE //set cell image to picture from url
+                    }else
+                    {
+                        print("Could not get image")
+                    }
                 }
+                
             }
-            
+            picTask.resume()
         }
-        picTask.resume()
-        // Configure the cell...
-
+        cell.setNeedsLayout()
         return cell
     }
     

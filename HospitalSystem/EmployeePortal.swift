@@ -17,14 +17,14 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var activity: UIActivityIndicatorView!
 
-    var appData:Array<Dictionary<String,Any>>? = nil
+    var appData:Array<Dictionary<String,String>> = Array(arrayLiteral: Dictionary<String,String>())
     var numberOfApps:Int = 0
     
     override func viewDidLoad() {
         //Set the date to whatever it is today:
         super.viewDidLoad()
+        tableView.allowsSelection = false
         
-        activity.hidesWhenStopped = true
         //DELETE THIS AFTER TESTING
         UserDefaults.standard.set("johndoe", forKey: "currentEmployee")
         let currentDate = Date()
@@ -32,7 +32,7 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
         dateFormatter.dateStyle = .full
         let date = dateFormatter.string(from: currentDate)
         dateLabel.text = date
-
+        self.tableView.setContentOffset(.zero, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,15 +49,19 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
         activity.startAnimating()
         //let webuid:String = scanner.getWebUID()
         //get one patient and display in new view
-        
+        let Scanner:ScanPi = ScanPi()
+        activity.stopAnimating()
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "ScanRFIDSegue", sender: self)
+        }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         //Get this employees appointments
-        self.tableView.register(appCell.self, forCellReuseIdentifier: "appCell")
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
+        activity.hidesWhenStopped = true
         let currentUser = UserDefaults.standard.string(forKey: "currentEmployee")
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_app.php")
         var request = URLRequest(url: _URL!)
@@ -71,7 +75,7 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             }
             do{
-                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<Dictionary<String,Any>>
+                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<Dictionary<String,String>>
                 
                 self.numberOfApps = JSON.count
                 self.appData = JSON
@@ -100,14 +104,24 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "appCell", for: indexPath) as! appCell
+        cell.setDefault()
         let row = indexPath.row
-   
-        cell.patientName.text = self.appData?[row]["pName"] as! String
-        cell.reasonLabel.text = self.appData?[row]["reason"] as! String
-        cell.dateLabel.text = self.appData?[row]["dat"] as! String
+
+        if let currentName:String = self.appData[row]["pName"]!
+        {
+            cell.patientName.text = currentName
+        }
+        if let currentReason:String = self.appData[row]["reason"]!
+        {
+           cell.reasonLabel.text = currentReason
+        }
+        if let currentDate:String = self.appData[row]["date"]!
+        {
+            cell.dateLabel.text = currentDate
+        }
         
-    
-        return cell
+        
+       return cell
     }
     
 

@@ -12,22 +12,13 @@ import Foundation
 class PatientViewController: UIViewController {
     
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sexLabel: UILabel!
-    @IBOutlet weak var addLabel: UILabel!
-    @IBOutlet weak var hrLabel: UILabel!
-    @IBOutlet weak var btLabel: UILabel!
-    @IBOutlet weak var daLabel: UILabel!
-    @IBOutlet weak var roomtypeLabel: UILabel!
-    
-    var Name : String = ""
-    var Sex : String = ""
-    var Add : String = ""
-    var HR : String = ""
-    var BT : String = ""
-    var DA : String = ""
-    var RoomType : String = ""
-    var finalUID : String = ""
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var addr: UILabel!
+    @IBOutlet weak var sex: UILabel!
+    @IBOutlet weak var username: UILabel!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let Scan:ScanPi = ScanPi()
@@ -37,20 +28,7 @@ class PatientViewController: UIViewController {
         do {
             let RESULT = try Data(contentsOf: url!)
             let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : Any]
-            Name = JSON["PName"] as! String
-            Sex = JSON["Sex"] as! String
-            Add = JSON["Address"] as! String
-//            HR = JSON["HeartRate"] as! String
-//            BT = JSON ["BodyTemp"] as! String
-//            DA = JSON ["DateAdmitted"] as! String
-//            RoomType = JSON["RID"] as! String
-            nameLabel.text = Name
-            sexLabel.text = Sex
-            addLabel.text = Add
-//            hrLabel.text = HR
-//            btLabel.text = BT
-            daLabel.text = DA
-            roomtypeLabel.text = RoomType
+
         }
         catch {
             print("ERROR DOWNLOADING JSON DATA")

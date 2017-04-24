@@ -34,23 +34,24 @@ class PatientLoginViewController: UIViewController
             }
             
             userExists = String(data: data!, encoding: .utf8)!
+            if(userExists == "LOGGED IN")
+            {
+                //User Exists
+                self.performSegue(withIdentifier: "LogInSegue", sender: self)
+            }else
+            {
+                //User does not exist
+                let alert = UIAlertController(title: "Error", message: "Not a valid username/password combo", preferredStyle: .alert)
+                let OK = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+                    print("OK")
+                })
+                alert.addAction(OK)
+                self.present(alert, animated: true, completion:nil)
+            }
+
         }
         task.resume()
-        if(userExists == "LOGGED IN")
-        {
-            //User Exists
-            self.performSegue(withIdentifier: "LogInSegue", sender: self)
-        }else
-        {
-            //User does not exist
-            let alert = UIAlertController(title: "Error", message: "Not a valid username/password combo", preferredStyle: .alert)
-            let OK = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
-                print("OK")
-            })
-            alert.addAction(OK)
-            self.present(alert, animated: true, completion:nil)
-        }
-    
+        
     }
     
     

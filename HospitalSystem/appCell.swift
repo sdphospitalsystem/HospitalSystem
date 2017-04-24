@@ -15,51 +15,47 @@ class appCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var reasonLabel: UILabel!
 
+    
 
-    
-    var NAME:String = ""
-    var REASON:String = ""
-    var DATE:Date? = nil
-
-    
-    
     
     @IBAction func contactPatient(_ sender: UIButton)
     {
-        let alert = UIAlertController(title: "Contact Patient?", message: "Select EMail or Phone", preferredStyle: .alert)
-        let EMail = UIAlertAction(title: "Email", style: .default) { (UIAlertAction) in
-            //code to send email here
         
-        }
-        let Phone = UIAlertAction(title: "Phone", style: .default) { (self) in
-            //code to call here
-        }
-        let Cancel = UIAlertAction(title: "Cancel", style: .default) { (self) in
-            return
-        }
-        alert.addAction(EMail)
-        alert.addAction(Phone)
-        alert.addAction(Cancel)
+        
     }
     
     @IBAction func cancelApp(_ sender: UIButton)
     {
-        let alert = UIAlertController(title: "Delete Appointment?", message: "Are you sure? The patient will be notified of the cancellation.", preferredStyle: .alert)
-        let Yes = UIAlertAction(title: "Yes", style: .default) { (UIAlertAction) in
-            //code to delete appointment here
+        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/delete_appointment.php")
+        var request = URLRequest(url: _URL!)
+        request.httpMethod="POST"
+        let postString = "pName=\(self.patientName.text!)"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            do{
+                print(String(data: data!, encoding: .utf8))
+            }catch{
+                print("ERROR DOWNLOADING JSON")
+            }
         }
-        let No = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) in
-            return
-        }
-        alert.addAction(Yes)
-        alert.addAction(No)
-    }
+        task.resume()
+}
     
+    
+    func setDefault()
+    {
+        
+    }
 
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
         
     }
 
