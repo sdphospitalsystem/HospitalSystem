@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import MessageUI
 
-class ContactDoctorTableViewController: UITableViewController {
-    var contacts:Array<Dictionary<String,String>> = Array()
+class ContactDoctorTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
+    var contacts:Array<Dictionary<String,String>> = Array(arrayLiteral: Dictionary<String,String>())
+    
+    var NAME:String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.allowsSelectionDuringEditing = false
+        self.tableView.layoutIfNeeded()
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/contact_doctor.php")
         do {
             let data = try Data(contentsOf: _URL!)
@@ -28,17 +34,44 @@ class ContactDoctorTableViewController: UITableViewController {
         } catch {
             print("Error downlading data")
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /**
+    ///Phone and Email methods
+    @IBAction func callButton(_ sender: UIButton)
+    {
+        let _URL2 = URL(string: "http://sdphospitalsystem.uconn.edu/iosContacts.php")
+        var request = URLRequest(url: _URL2!)
+        request.httpMethod="POST"
+        let postString = "name=\(self.Name)"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            do{
+                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<String>
+                self.Email = JSON[0]
+                self.Phone = JSON[1]
+            }catch{
+                print("ERROR DOWNLOADING JSON")
+            }
+        }
+        task.resume()
+
+    }
+    @IBAction func emailButton(_ sender: UIButton) {
+    }
+    **/
+    
+    
 
     // MARK: - Table view data source
 
@@ -49,14 +82,32 @@ class ContactDoctorTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let cell = tableView.dequeueReusableCell(withIdentifier: "doctorCell", for: indexPath)
-
-        // Configure the cell...
-        
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "doctorCell", for: indexPath) as! doctorCell
+        cell.name.text = self.contacts[row]["DName"] as! String
+        cell.setNeedsLayout()
         return cell
     }
     
+    //function to send emails
+    func sendEmail(Recipient:String, Subject:String)
+    {
+        let toSend = [Recipient]
+        if MFMailComposeViewController.canSendMail()
+        {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(toSend)
+            mail.setMessageBody(Subject, isHTML: true)
+            self.present(mail, animated: true, completion: nil)
+        }else{
+            print("Error displaying MailView")
+        }
+    }
+    
+    //func to drive emails:
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // Override to support conditional editing of the table view.

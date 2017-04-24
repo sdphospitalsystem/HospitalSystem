@@ -139,7 +139,7 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         cell.Name = self.appData?[row]["PName"] as! String
         let uname = self.appData?[row]["PUsername"] as! String
         self.Name = self.appData?[row]["PName"] as! String
-        var _pid = self.appData?[row]["PID"] as! String
+        let _pid = self.appData?[row]["PID"] as! String
         DispatchQueue.main.async {
             let picturePath:String = _pid + ".jpeg"
             let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!

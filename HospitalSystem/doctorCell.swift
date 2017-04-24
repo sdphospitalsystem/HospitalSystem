@@ -11,14 +11,7 @@ import UIKit
 class doctorCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
 
-    @IBAction func call(_ sender: Any)
-    {
-        
-    }
-    @IBAction func email(_ sender: Any)
-    {
-        
-    }
+  
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,5 +23,8 @@ class doctorCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+
+
 
 }
