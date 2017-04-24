@@ -28,7 +28,30 @@ class PatientViewController: UIViewController {
         do {
             let RESULT = try Data(contentsOf: url!)
             let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : Any]
-
+            name.text = JSON["PName"] as! String
+            addr.text = JSON["Address"] as! String
+            sex.text = JSON["Sex"] as! String
+            username.text = JSON["PUsername"] as! String
+            DispatchQueue.main.async {
+                let picturePath:String = JSON["PUsername"] as! String + ".jpeg"
+                let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
+                let session = URLSession(configuration: .default)
+                let picTask = session.dataTask(with: imageURL) { (data,response,error) in
+                    if let e = error {
+                        print("ERROR: \(e)")
+                    }else{
+                        if let imageData = data{
+                            let IMAGE = UIImage(data: imageData)
+                             self.imageView.image = IMAGE!
+                        }else
+                        {
+                            print("Could not get image")
+                        }
+                    }
+                    
+                }
+                picTask.resume()
+            }
         }
         catch {
             print("ERROR DOWNLOADING JSON DATA")

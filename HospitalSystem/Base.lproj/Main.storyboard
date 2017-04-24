@@ -143,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="1120.8" y="897.30134932533736"/>
         </scene>
-        <!--Patient View Controller-->
+        <!--Patient Details-->
         <scene sceneID="mcf-x8-IIW">
             <objects>
-                <viewController id="LnL-9K-0cd" customClass="PatientViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Patient Details" id="LnL-9K-0cd" customClass="PatientViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e8l-Ii-US8"/>
                         <viewControllerLayoutGuide type="bottom" id="7EZ-7D-MNR"/>

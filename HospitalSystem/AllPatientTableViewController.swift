@@ -61,7 +61,7 @@ class AllPatientTableViewController: UITableViewController {
         //cell.rtLabel.text = self.appData?[row]["LoginAs"] as! String
         cell.sexLabel.text = self.appData?[row]["Sex"] as! String
         cell.nameLabel.text = self.appData?[row]["PName"] as! String
-        
+        cell.Name = self.appData?[row]["PName"] as! String
         let uname = self.appData?[row]["PUsername"] as! String
         DispatchQueue.main.async {
             let picturePath:String = uname+".jpeg"
@@ -83,6 +83,7 @@ class AllPatientTableViewController: UITableViewController {
             }
             picTask.resume()
         }
+        
         cell.setNeedsLayout()
         return cell
     }
