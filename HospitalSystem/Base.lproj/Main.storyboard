@@ -40,11 +40,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="appCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="appCell" rowHeight="136" id="82R-SF-8eu" customClass="appCell" customModule="HospitalSystem" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="appCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="appCell" rowHeight="136" id="82R-SF-8eu" customClass="appCell" customModule="HospitalSystem" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="136"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="82R-SF-8eu" id="4WI-l4-k2W">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="136"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="135.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jb4-s2-FRY">
@@ -211,11 +211,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="patientDetail" selectionStyle="default" indentationWidth="10" reuseIdentifier="patientDetail" rowHeight="221" id="FJW-Hk-3Xm" customClass="patientCell" customModule="HospitalSystem" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="patientDetail" selectionStyle="default" indentationWidth="10" reuseIdentifier="patientDetail" rowHeight="221" id="FJW-Hk-3Xm" customClass="patientCell" customModule="HospitalSystem" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="221"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJW-Hk-3Xm" id="AbY-Bl-ZKj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="220.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XY3-wQ-CZg">
@@ -277,7 +277,7 @@
                                             <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Contact Patient"/>
                                             <connections>
-                                                <action selector="contactPatient:" destination="FJW-Hk-3Xm" eventType="touchUpInside" id="OJo-RU-yGq"/>
+                                                <action selector="contactPatientClicked:" destination="7yQ-jw-cdJ" eventType="touchUpInside" id="uGK-Jv-W0k"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eob-PG-lUg">
@@ -342,7 +342,7 @@
                                     <color key="backgroundColor" red="0.74369739440000004" green="0.85998115500000005" blue="0.92062014250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" button="YES" image="YES" updatesFrequently="YES"/>
+                                    <accessibilityTraits key="traits" button="YES"/>
                                 </accessibility>
                                 <connections>
                                     <outlet property="addLabel" destination="jXg-Ig-jv3" id="6L4-Tm-9GB"/>
@@ -876,7 +876,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZdY-cr-u0c" id="L7w-yD-beq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ8-9N-syh">

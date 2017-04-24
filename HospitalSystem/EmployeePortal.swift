@@ -18,15 +18,40 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var activity: UIActivityIndicatorView!
 
     var appData:Array<Dictionary<String,String>> = Array(arrayLiteral: Dictionary<String,String>())
-    var numberOfApps:Int = 0
+    
     
     override func viewDidLoad() {
         //Set the date to whatever it is today:
         super.viewDidLoad()
+        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_app.php")
+        var request = URLRequest(url: _URL!)
+        request.httpMethod="POST"
+        let postString = "uname=johndoe"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            do{
+                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<Dictionary<String,String>>
+                print("JSON: \(JSON)")
+                self.appData = JSON
+                
+                DispatchQueue.main.async(execute: {()-> Void in
+                    self.tableView.reloadData()
+                })
+                //JSON file contains everything needed to make appointments
+            }catch{
+                print("ERROR DOWNLOADING JSON")
+            }
+        }
+        task.resume()
+
         tableView.allowsSelection = false
-        
-        //DELETE THIS AFTER TESTING
-        UserDefaults.standard.set("johndoe", forKey: "currentEmployee")
+        tableView.allowsSelectionDuringEditing = false
+        //tableView.setEditing(true, animated: false)
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
@@ -61,36 +86,10 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
         activity.hidesWhenStopped = true
-        let currentUser = UserDefaults.standard.string(forKey: "currentEmployee")
-        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_app.php")
-        var request = URLRequest(url: _URL!)
-        request.httpMethod="POST"
-        let postString = "uname=johndoe"
-        request.httpBody = postString.data(using: String.Encoding.utf8)
-        let task = URLSession.shared.dataTask(with: request) {
-            data, response, error in
-            if error != nil {
-                print("error=\(error)")
-                return
+        
             }
-            do{
-                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<Dictionary<String,String>>
-                
-                self.numberOfApps = JSON.count
-                self.appData = JSON
-                
-                
-                DispatchQueue.main.async(execute: {()-> Void in
-                    self.tableView.reloadData()
-                })
-                //JSON file contains everything needed to make appointments
-            }catch{
-                print("ERROR DOWNLOADING JSON")
-            }
-        }
-        task.resume()
-    }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,17 +99,15 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //The number of rows is equal to the amount of appointments the data returned:
-        return self.numberOfApps
+        return self.appData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "appCell", for: indexPath) as! appCell
-        cell.setDefault()
         let row = indexPath.row
-
+        
         if let currentName:String = self.appData[row]["pName"]!
         {
-            cell.patientName.text = currentName
-        }
+            cell.patientName.text = currentName        }
         if let currentReason:String = self.appData[row]["reason"]!
         {
            cell.reasonLabel.text = currentReason
@@ -120,9 +117,41 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.dateLabel.text = currentDate
         }
         
-        
        return cell
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.delete)
+        {
+            let currentRowToDelete = indexPath.row
+            let currentAppToDelete = self.appData[currentRowToDelete]["pName"] as! String
+            self.appData.remove(at: currentRowToDelete) //actually delete it from data
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+            let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/delete_appointment.php")
+            var request = URLRequest(url: _URL!)
+            request.httpMethod="POST"
+            let postString = "pName=\(currentAppToDelete)"
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            let task = URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                if error != nil {
+                    print("error=\(error)")
+                    return
+                }
+                do{
+                    print(String(data: data!, encoding: .utf8))
+                }catch{
+                    print("ERROR DOWNLOADING JSON")
+                }
+            }
+            task.resume()
+            
+        }
+    }
+        
+    
     
 
 }
