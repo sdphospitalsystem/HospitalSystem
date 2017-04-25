@@ -21,8 +21,7 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     override func viewDidLoad() {
-        //Set the date to whatever it is today:
-        super.viewDidLoad()
+        
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_app.php")
         var request = URLRequest(url: _URL!)
         request.httpMethod="POST"
@@ -58,6 +57,10 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
         let date = dateFormatter.string(from: currentDate)
         dateLabel.text = date
         self.tableView.setContentOffset(.zero, animated: true)
+        //Set the date to whatever it is today:
+        super.viewDidLoad()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -28,11 +28,9 @@ class patientCell: UITableViewCell, MFMailComposeViewControllerDelegate {
     ///MOVED TO AllPatientTableController
         
     }
-    @IBAction func deletePatient(_ sender: UIButton)
-    {
-    
+
  ///MOVED TO AllPatientTableController
-    }
+
     
     //function to send emails
     func sendEmail(Recipient:String, Subject:String)

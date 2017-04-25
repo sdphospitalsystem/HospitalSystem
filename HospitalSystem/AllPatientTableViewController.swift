@@ -174,7 +174,7 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         if(editingStyle == UITableViewCellEditingStyle.delete)
         {
             let currentRowToDelete = indexPath.row
-            let currentPatientToDelete = self.appData?[currentRowToDelete]["pName"] as! String
+            let currentPatientToDelete = self.appData?[currentRowToDelete]["pName"]!
             self.appData?.remove(at: currentRowToDelete) //actually delete it from data
             self.tableView.deleteRows(at: [indexPath], with: .left)
             let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/remove_patient.php")

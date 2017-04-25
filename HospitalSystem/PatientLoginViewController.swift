@@ -34,6 +34,7 @@ class PatientLoginViewController: UIViewController
             }
             
             userExists = String(data: data!, encoding: .utf8)!
+            print(userExists)
             if(userExists == "LOGGED IN")
             {
                 //User Exists
