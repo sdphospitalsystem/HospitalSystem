@@ -1,34 +1,20 @@
 //
-//  PatientPortal.swift
+//  PatientNav.swift
 //  HospitalSystem
 //
-//  Created by Andras Palfi on 4/22/17.
+//  Created by Andras Palfi on 4/25/17.
 //  Copyright © 2017 Andras Palfi. All rights reserved.
 //
 
 import UIKit
 
-class PatientPortal: UIViewController {
-    @IBOutlet weak var dateLabel: UILabel!
-    var UNAME:String!
-    
+class PatientNav: UINavigationController {
 
-    @IBAction func logoutClicked(_ sender: UIButton)
-    {
-        
-    }
+    var UNAME:String!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        let date = dateFormatter.string(from: currentDate)
-        dateLabel.text = date
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,15 +23,10 @@ class PatientPortal: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PatientDetailSegue"
-        {
-            if let nextView = segue.destination as? PatientDetailsViewController{
-                print("Uname 2 : \(self.UNAME)")
-                nextView.UNAME = self.UNAME
-            }
+        if let nextView = segue.destination as? PatientPortal{
+            nextView.UNAME = self.UNAME
         }
     }
-
     
     /*
     // MARK: - Navigation

@@ -43,13 +43,15 @@ class PatientLoginViewController: UIViewController
                 }
             }else
             {
-                //User does not exist
-                let alert = UIAlertController(title: "Error", message: "Not a valid username/password combo", preferredStyle: .alert)
-                let OK = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
-                    print("OK")
-                })
-                alert.addAction(OK)
-                self.present(alert, animated: true, completion:nil)
+                DispatchQueue.main.async {
+                    //User does not exist
+                    let alert = UIAlertController(title: "Error", message: "Not a valid username/password combo", preferredStyle: .alert)
+                    let OK = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+                        print("OK")
+                    })
+                    alert.addAction(OK)
+                    self.present(alert, animated: true, completion:nil)
+                }
             }
             
         }
@@ -60,9 +62,9 @@ class PatientLoginViewController: UIViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LogInSegue"
         {
-            if let NextView = segue.destination as? PatientPortal{
-                NextView.UNAME = self.USERNAME
-            }
+            var destNav = segue.destination as! UINavigationController
+            var nextView = destNav.topViewController as! PatientPortal
+            nextView.UNAME = self.USERNAME
         }
     }
     

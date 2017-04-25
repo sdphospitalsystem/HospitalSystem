@@ -25,11 +25,10 @@ class patientCell: UITableViewCell, MFMailComposeViewControllerDelegate {
     var Phone:String = ""
     @IBAction func contactPatient(_ sender: UIButton)
     {
-    ///MOVED TO AllPatientTableController
+
         
     }
 
- ///MOVED TO AllPatientTableController
 
     
     //function to send emails

@@ -12,26 +12,30 @@ class PatientDetailsViewController: UIViewController {
 
     var UNAME:String!
     
+    
     @IBOutlet weak var patientImage: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addrLabel: UILabel!
-    @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var unameLabel: UILabel!
+    
+    @IBOutlet weak var sexLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let URLString = String(format: "http://sdphospitalsystem.uconn.edu/get_patient.php?prfid=%@", self.UNAME)
+        let username = UNAME!
+        
+        let URLString = String(format: "http://sdphospitalsystem.uconn.edu/get_patient_from_uname.php?uname=%@", username)
         let _URL = URL(string: URLString)
         
         do {
             let RESULT = try Data(contentsOf: _URL!)
             let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : Any]
-            nameLabel.text = JSON["Pname"] as! String
-            addrLabel.text = JSON["Address"] as! String
-            sexLabel.text = JSON["Sex"] as! String
-            unameLabel.text = JSON["PUsername"] as! String
+            nameLabel.text = JSON["PName"] as? String
+            addrLabel.text = JSON["Address"] as? String
+            sexLabel.text = JSON["Sex"] as? String
+            unameLabel.text = JSON["PUsername"] as? String
             DispatchQueue.main.async {
-                let picturePath:String = JSON["PUsername"] as! String + ".jpeg"
+                let picturePath:String = username + ".jpeg"
                 let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
                 let session = URLSession(configuration: .default)
                 let picTask = session.dataTask(with: imageURL) { (data,response,error) in
@@ -40,7 +44,7 @@ class PatientDetailsViewController: UIViewController {
                     }else{
                         if let imageData = data{
                             let IMAGE = UIImage(data: imageData)
-                            self.patientImage.image = IMAGE!
+                            self.patientImage.image = IMAGE //set cell image to picture from url
                         }else
                         {
                             print("Could not get image")
@@ -49,13 +53,12 @@ class PatientDetailsViewController: UIViewController {
                     
                 }
                 picTask.resume()
-            }
-        } catch {
-            print("Error getting data")
-        }
-        
 
+            }
         // Do any additional setup after loading the view.
+        }catch{
+            print("Error")
+        }
     }
 
     override func didReceiveMemoryWarning() {
