@@ -57,6 +57,14 @@ class PatientLoginViewController: UIViewController
     
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LogInSegue"
+        {
+            if let NextView = segue.destination as? PatientPortal{
+                NextView.UNAME = self.USERNAME
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -819,6 +819,9 @@
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <size key="titleShadowOffset" width="1" height="0.0"/>
                                 <state key="normal" title="Personal Info"/>
+                                <connections>
+                                    <segue destination="LZX-FV-UJu" kind="show" identifier="PatientDetailSegue" id="yQW-Hq-NAG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176470588238" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1073,10 +1076,10 @@
             </objects>
             <point key="canvasLocation" x="-2567" y="53"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--PatientNav-->
         <scene sceneID="XNq-h0-6kt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oiV-BR-2nI" sceneMemberID="viewController">
+                <navigationController title="PatientNav" automaticallyAdjustsScrollViewInsets="NO" id="oiV-BR-2nI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="g0C-hx-C1e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1109,9 +1112,72 @@
             </objects>
             <point key="canvasLocation" x="167" y="897"/>
         </scene>
+        <!--Patient Details-->
+        <scene sceneID="TkJ-oG-DSz">
+            <objects>
+                <viewController title="Patient Details" id="LZX-FV-UJu" customClass="PatientDetailsViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eUR-Kc-cha"/>
+                        <viewControllerLayoutGuide type="bottom" id="LcT-Kv-2Fx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n67-uh-C7R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tD5-fW-SgL">
+                                <rect key="frame" x="16" y="72" width="343" height="274"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYY-38-anT">
+                                <rect key="frame" x="16" y="377" width="289" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF8-oW-h04">
+                                <rect key="frame" x="16" y="428" width="289" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sex: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8i-tc-kZg">
+                                <rect key="frame" x="16" y="479" width="289" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pz8-5E-x17">
+                                <rect key="frame" x="16" y="530" width="289" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="addr" destination="QF8-oW-h04" id="hLa-oV-gaj"/>
+                        <outlet property="addrLabel" destination="QF8-oW-h04" id="ayP-X7-ybI"/>
+                        <outlet property="imageView" destination="tD5-fW-SgL" id="XS7-5p-ERj"/>
+                        <outlet property="name" destination="SYY-38-anT" id="tLJ-rf-5Dk"/>
+                        <outlet property="nameLabel" destination="SYY-38-anT" id="LFW-99-VCK"/>
+                        <outlet property="patientImage" destination="tD5-fW-SgL" id="BBJ-8x-28a"/>
+                        <outlet property="sex" destination="N8i-tc-kZg" id="aLi-tA-b1F"/>
+                        <outlet property="sexLabel" destination="Pz8-5E-x17" id="hof-F9-HEP"/>
+                        <outlet property="unameLabel" destination="Pz8-5E-x17" id="VoL-H3-TRH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NG2-ql-phe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121" y="-2276"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pcV-qw-0TB"/>
+        <segue reference="YEh-Ov-dmy"/>
         <segue reference="9je-F9-n2J"/>
     </inferredMetricsTieBreakers>
 </document>

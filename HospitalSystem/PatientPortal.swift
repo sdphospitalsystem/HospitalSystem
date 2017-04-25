@@ -10,6 +10,8 @@ import UIKit
 
 class PatientPortal: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
+    var UNAME:String!
+    
 
     @IBAction func logoutClicked(_ sender: UIButton)
     {
@@ -34,7 +36,16 @@ class PatientPortal: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PatientDetailSegue"
+        {
+            if let nextView = segue.destination as? PatientDetailsViewController{
+                nextView.UNAME = self.UNAME
+            }
+        }
+    }
 
+    
     /*
     // MARK: - Navigation
 
