@@ -274,21 +274,12 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-Rg-Qrq">
-                                            <rect key="frame" x="29" y="186" width="148" height="30"/>
+                                            <rect key="frame" x="29" y="186" width="309" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Contact Patient"/>
                                             <connections>
                                                 <action selector="contactPatientClicked:" destination="7yQ-jw-cdJ" eventType="touchUpInside" id="uGK-Jv-W0k"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eob-PG-lUg">
-                                            <rect key="frame" x="193" y="186" width="148" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Delete Patient"/>
-                                            <connections>
-                                                <action selector="deletePatient:" destination="FJW-Hk-3Xm" eventType="touchUpInside" id="D8t-vT-EUT"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve9-4s-GTb">
@@ -351,8 +342,8 @@
                                     <outlet property="btLabel" destination="x2e-y2-JoB" id="r3w-WH-q55"/>
                                     <outlet property="daLabel" destination="waq-DL-QGn" id="AL3-5S-KRN"/>
                                     <outlet property="hrLabel" destination="xbN-di-NC2" id="FG5-ub-VIM"/>
-                                    <outlet property="imageView" destination="XY3-wQ-CZg" id="x0e-PY-b4X"/>
                                     <outlet property="nameLabel" destination="ve9-4s-GTb" id="P3N-bo-kqt"/>
+                                    <outlet property="pImage" destination="XY3-wQ-CZg" id="eHW-0s-fOg"/>
                                     <outlet property="rtLabel" destination="n2D-MG-8AU" id="g1x-Pa-WaL"/>
                                     <outlet property="sexLabel" destination="hJ6-PE-GeZ" id="HOm-eS-YfZ"/>
                                 </connections>
@@ -366,7 +357,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybn-a6-Afr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="983" y="1675"/>
+            <point key="canvasLocation" x="981.60000000000002" y="1674.5127436281859"/>
         </scene>
         <!--New User-->
         <scene sceneID="Tvo-ge-iVr">
@@ -381,7 +372,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-1X-TwW">
-                                <rect key="frame" x="16" y="338" width="343" height="28"/>
+                                <rect key="frame" x="16" y="334" width="309" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Press to Scan RFID Tag"/>
@@ -446,12 +437,8 @@
                                     <action selector="continue:" destination="JC8-x9-v9R" eventType="touchUpInside" id="0KL-Wk-jAU"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9r-1J-F1k">
-                                <rect key="frame" x="16" y="406" width="343" height="206"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0F-go-PG1">
-                                <rect key="frame" x="16" y="374" width="343" height="24"/>
+                                <rect key="frame" x="16" y="374" width="195" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Choose Image from Library"/>
                                 <connections>
@@ -466,13 +453,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lHF-e5-GbO">
-                                <rect key="frame" x="269" y="342" width="20" height="20"/>
+                                <rect key="frame" x="333" y="338" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="r6v-Aa-JGs">
                                 <rect key="frame" x="16" y="645" width="343" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Dk-CM-CCf">
+                                <rect key="frame" x="219" y="371" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take Picture"/>
+                                <connections>
+                                    <action selector="takePicture:" destination="JC8-x9-v9R" eventType="touchUpInside" id="L4O-b8-oxH"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9r-1J-F1k">
+                                <rect key="frame" x="80" y="409" width="214" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176470588238" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -765,7 +764,7 @@
                                 <size key="titleShadowOffset" width="1" height="0.0"/>
                                 <state key="normal" title="Make Appointment"/>
                                 <connections>
-                                    <segue destination="C09-fE-ScO" kind="show" id="lc2-Zr-VYd"/>
+                                    <segue destination="C09-fE-ScO" kind="show" identifier="MakeAppSegue" id="lc2-Zr-VYd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anl-6J-aVr">

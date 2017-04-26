@@ -11,7 +11,7 @@ import UIKit
 class PatientPortal: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     var UNAME:String!
-    
+    var NAME:String!
 
     @IBAction func logoutClicked(_ sender: UIButton)
     {
@@ -19,7 +19,26 @@ class PatientPortal: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let _URL2 = URL(string: "http://sdphospitalsystem.uconn.edu/iosGetName.php")
+        var request = URLRequest(url: _URL2!)
+        request.httpMethod="POST"
+        let postString = "uname=\(self.UNAME as! String)"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            do{
+                self.NAME = String(data: data!, encoding: .utf8) as! String
+            }catch{
+                print("ERROR DOWNLOADING JSON")
+            }
+        }
+        task.resume()
 
+        
         // Do any additional setup after loading the view.
         
         let currentDate = Date()
@@ -42,6 +61,12 @@ class PatientPortal: UIViewController {
             if let nextView = segue.destination as? PatientDetailsViewController{
                 print("Uname 2 : \(self.UNAME)")
                 nextView.UNAME = self.UNAME
+            }
+        }
+        if segue.identifier == "MakeAppSegue"
+        {
+            if let nextView = segue.destination as? MakeAppointment{
+                nextView.NAME = self.NAME as! String
             }
         }
     }

@@ -20,27 +20,7 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
     var Phone:String = ""
     var PID:String = ""
     
-    @IBAction func deletePatientClicked(_ sender: Any) {
-        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/remove_patient.php")
-        var request = URLRequest(url: _URL!)
-        request.httpMethod="POST"
-        let postString = "name=\(self.Name)"
-        request.httpBody = postString.data(using: String.Encoding.utf8)
-        let task = URLSession.shared.dataTask(with: request) {
-            data, response, error in
-            if error != nil {
-                print("error=\(error)")
-                return
-            }
-            do{
-                print(String(data: data!, encoding: .utf8))
-            }catch{
-                print("ERROR DOWNLOADING JSON")
-            }
-        }
-        task.resume()
-    }
-    @IBAction func contactPatientClicked(_ sender: Any) {
+       @IBAction func contactPatientClicked(_ sender: Any) {
         print("Contact button clicked")
         //get the data for contacts
         //Get the contact data
@@ -142,8 +122,10 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         self.Name = self.appData?[row]["PName"] as! String
         let _pid = self.appData?[row]["PID"] as! String
         DispatchQueue.main.async {
-            let picturePath:String = _pid + ".jpeg"
+            print("uname: \(uname)")
+            let picturePath:String = uname + ".jpeg"
             let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
+            print("URL: \(imageURL)")
             let session = URLSession(configuration: .default)
             let picTask = session.dataTask(with: imageURL) { (data,response,error) in
                 if let e = error {
@@ -151,7 +133,8 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
                 }else{
                     if let imageData = data{
                         let IMAGE = UIImage(data: imageData)
-                        cell.patientImage?.image = IMAGE //set cell image to picture from url
+                        cell.pImage!.image = IMAGE as! UIImage
+                        
                         cell.setNeedsLayout()
                         cell.layoutIfNeeded()
                     }else

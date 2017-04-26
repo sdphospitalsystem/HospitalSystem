@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class ScanPi {
     let session = NMSSHSession.connect(toHost: "sdppi.hopto.org:/libnfc/examples", port: 22, withUsername: "pi")
@@ -25,6 +26,8 @@ class ScanPi {
             let uidstart = uid?.startIndex
             let index = uid!.index(uidstart!, offsetBy: 14)
             UID = (uid?.substring(to: index))!
+            
+
         } catch {
             print(error.localizedDescription)
         }

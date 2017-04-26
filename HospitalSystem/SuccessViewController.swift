@@ -11,6 +11,8 @@ import UIKit
 class SuccessViewController: UIViewController {
 
     var UNAME:String!
+    var NAME:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +30,7 @@ class SuccessViewController: UIViewController {
             var destNav = segue.destination as! UINavigationController
             var nextView = destNav.topViewController as! PatientPortal
             nextView.UNAME = self.UNAME
+            nextView.NAME = self.NAME as! String
         }
     }
 

@@ -32,7 +32,7 @@ class PatientViewController: UIViewController {
             addr.text = JSON["Address"] as? String
             sex.text = JSON["Sex"] as? String
             username.text = JSON["PUsername"] as? String
-            /**
+            
             DispatchQueue.main.async {
                 let picturePath:String = JSON["PUsername"] as! String + ".jpeg"
                 let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
@@ -52,7 +52,7 @@ class PatientViewController: UIViewController {
                     
                 }
                 picTask.resume()
-            }*/
+            }
         }
         catch {
             print("ERROR DOWNLOADING JSON DATA")

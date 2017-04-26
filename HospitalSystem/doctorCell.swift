@@ -17,6 +17,7 @@ class doctorCell: UITableViewCell{
     
     @IBAction func contactClicked(_ sender: Any) {
         DispatchQueue.main.async {
+            print("Clicked here")
             let phoneAlert = UIAlertController(title: "Contact", message: "Make Call?", preferredStyle: .alert)
             let ok = UIAlertAction(title: "Yes", style: .default) { (UIAlertAction) in
                 //code to make call here

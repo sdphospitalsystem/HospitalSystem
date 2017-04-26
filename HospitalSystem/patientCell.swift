@@ -11,7 +11,8 @@ import MessageUI
 
 class patientCell: UITableViewCell, MFMailComposeViewControllerDelegate {
 
-    @IBOutlet weak var patientImage: UIImageView!
+
+    @IBOutlet weak var pImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var addLabel: UILabel!

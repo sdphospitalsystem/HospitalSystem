@@ -34,28 +34,29 @@ class appCell: UITableViewCell, MFMailComposeViewControllerDelegate {
         let postString = "name=\(self.patientName.text!)"
         print("NAME: \(self.patientName.text!)")
         request.httpBody = postString.data(using: String.Encoding.utf8)
-        let task = URLSession.shared.dataTask(with: request) {
-            data, response, error in
-            if error != nil {
-                print("error=\(error)")
-                return
+        DispatchQueue.main.async {
+            let task = URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                if error != nil {
+                    print("error=\(error)")
+                    return
+                }
+                do{
+                    
+                    let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<String>
+                    self.Email = JSON[0]
+                    self.Phone = JSON[1]
+                }catch{
+                    print("ERROR DOWNLOADING JSON")
+                }
             }
-            do{
-                
-                let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<String>
-                self.Email = JSON[0]
-                self.Phone = JSON[1]
-            }catch{
-                print("ERROR DOWNLOADING JSON")
-            }
+            task.resume()
         }
-        task.resume()
-        
-    
         
         DispatchQueue.main.async {
             // UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
             //Present an alert to ask the user if they want to contact
+            print("Got here")
             var contactAlert = UIAlertController(title: "Contact", message: "Choose Email or Phone", preferredStyle: .alert)
             var _phone = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
                 //code to make call here
@@ -69,7 +70,8 @@ class appCell: UITableViewCell, MFMailComposeViewControllerDelegate {
             }
             contactAlert.addAction(_phone)
             contactAlert.addAction(_email)
-            UIApplication.shared.keyWindow?.rootViewController?.present(contactAlert, animated: true, completion: nil)
+            self.window?.rootViewController?.present(contactAlert, animated: true, completion: nil)
+            
         }
     }
     

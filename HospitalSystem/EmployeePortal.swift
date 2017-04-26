@@ -25,7 +25,7 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_app.php")
         var request = URLRequest(url: _URL!)
         request.httpMethod="POST"
-        let postString = "uname=johndoe"
+        let postString = "uname=andras"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in

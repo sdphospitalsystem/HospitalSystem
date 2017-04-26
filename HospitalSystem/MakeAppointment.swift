@@ -10,7 +10,7 @@ import UIKit
 
 class MakeAppointment: UIViewController {
 
-    
+    var NAME:String!
     @IBOutlet weak var appDate: UIDatePicker!
 
     
@@ -19,13 +19,15 @@ class MakeAppointment: UIViewController {
     
     @IBAction func scheduleApp(_ sender: UIButton)
     {
+        
         let date = appDate.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:MM:SS"
         let mysqlDate:String = dateFormatter.string(from: date)
         print(mysqlDate)
         let textResponse:String = reasonText.text!
-        let name:String = "Test"
+        let name:String = self.NAME as! String
+        
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/make_appointment.php")
         var request = URLRequest(url: _URL!)
         request.httpMethod="POST"
@@ -40,8 +42,13 @@ class MakeAppointment: UIViewController {
             print(String(data: data!, encoding: .utf8))
         }
         task.resume()
+        DispatchQueue.main.async {
+            var alert = UIAlertController(title: "Make Appointment", message: "Success!, you have registered your appointment.", preferredStyle: .alert)
+            var OK = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(OK)
+            self.present(alert, animated: true, completion: nil)
+        }
         
-    
     }
     
     @IBAction func textField(_ sender: AnyObject) {

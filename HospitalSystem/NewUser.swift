@@ -53,6 +53,17 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
         
     }
     
+    @IBAction func takePicture(_ sender: UIButton)
+    {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+
+    }
     //"Press to Scan RFID tag. Starts activity animation until the PI is done scanning
     @IBAction func registerRFID(_ sender: Any) {
         activity.startAnimating()
@@ -203,8 +214,11 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
             if let nextView = segue.destination as? SuccessViewController
             {
                 nextView.UNAME = self.USERNAME
+                print("NAME AT SEG1: \(self.NAME)")
+                nextView.NAME = self.NAME as! String
             }
         }
+        
     }
     
     
