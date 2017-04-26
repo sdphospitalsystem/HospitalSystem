@@ -27,11 +27,12 @@ class PatientViewController: UIViewController {
         let url = URL(string: URLString)
         do {
             let RESULT = try Data(contentsOf: url!)
-            let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : String]
-            name.text = "Name: " + JSON["PName"]!
-            addr.text = "Address: " + JSON["Address"]!
-            sex.text = "Sex: " + JSON["Sex"]!
-            username.text = "Username: " + JSON["PUsername"]!
+            let JSON = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String : Any]
+            name.text = JSON["PName"] as? String
+            addr.text = JSON["Address"] as? String
+            sex.text = JSON["Sex"] as? String
+            username.text = JSON["PUsername"] as? String
+            /**
             DispatchQueue.main.async {
                 let picturePath:String = JSON["PUsername"] as! String + ".jpeg"
                 let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
@@ -51,7 +52,7 @@ class PatientViewController: UIViewController {
                     
                 }
                 picTask.resume()
-            }
+            }*/
         }
         catch {
             print("ERROR DOWNLOADING JSON DATA")

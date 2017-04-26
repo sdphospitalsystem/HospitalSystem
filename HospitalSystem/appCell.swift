@@ -51,23 +51,24 @@ class appCell: UITableViewCell, MFMailComposeViewControllerDelegate {
         }
         task.resume()
         
+    
         
-        //Present an alert to ask the user if they want to contact
-        var contactAlert = UIAlertController(title: "Contact", message: "Choose Email or Phone", preferredStyle: .alert)
-        var _phone = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
-            //code to make call here
-            //phone "url":
-            let phoneURL:URL = URL(string: "telprompt://\(self.Phone)")!
-            UIApplication.shared.openURL(phoneURL)
-        }
-        var _email = UIAlertAction(title: "Email", style: .default) { (UIAlertAction) in
-            //Code to do email here
-            self.sendEmail(Recipient: self.Email, Subject: "Test")
-        }
-        contactAlert.addAction(_phone)
-        contactAlert.addAction(_email)
         DispatchQueue.main.async {
             // UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
+            //Present an alert to ask the user if they want to contact
+            var contactAlert = UIAlertController(title: "Contact", message: "Choose Email or Phone", preferredStyle: .alert)
+            var _phone = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
+                //code to make call here
+                //phone "url":
+                let phoneURL:URL = URL(string: "telprompt://\(self.Phone)")!
+                UIApplication.shared.openURL(phoneURL)
+            }
+            var _email = UIAlertAction(title: "Email", style: .default) { (UIAlertAction) in
+                //Code to do email here
+                self.sendEmail(Recipient: self.Email, Subject: "Test")
+            }
+            contactAlert.addAction(_phone)
+            contactAlert.addAction(_email)
             UIApplication.shared.keyWindow?.rootViewController?.present(contactAlert, animated: true, completion: nil)
         }
     }

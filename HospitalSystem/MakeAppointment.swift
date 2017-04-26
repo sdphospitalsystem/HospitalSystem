@@ -12,8 +12,9 @@ class MakeAppointment: UIViewController {
 
     
     @IBOutlet weak var appDate: UIDatePicker!
-    @IBOutlet weak var ReasonForVisit: UITextView!
+
     
+    @IBOutlet weak var reasonText: UITextField!
     var returnData:Data = Data()
     
     @IBAction func scheduleApp(_ sender: UIButton)
@@ -23,7 +24,7 @@ class MakeAppointment: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:MM:SS"
         let mysqlDate:String = dateFormatter.string(from: date)
         print(mysqlDate)
-        let textResponse:String = ReasonForVisit.text!
+        let textResponse:String = reasonText.text!
         let name:String = "Test"
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/make_appointment.php")
         var request = URLRequest(url: _URL!)
@@ -41,6 +42,10 @@ class MakeAppointment: UIViewController {
         task.resume()
         
     
+    }
+    
+    @IBAction func textField(_ sender: AnyObject) {
+        self.view.endEditing(true);
     }
     
     

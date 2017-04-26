@@ -12,7 +12,7 @@ import MessageUI
 class AllPatientTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var patient: patientCell!
-    var appData:Array<Dictionary<String,String>> = Array(arrayLiteral: Dictionary<String,String>())
+    var appData:Array<Dictionary<String,Any>>? = nil
     var numberOfApps:Int = 0
     
     var Name:String = ""
@@ -93,10 +93,10 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_all_patient.php")
         do {
             let data =  try Data(contentsOf: _URL!)
-            let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String:String]
+            let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Array<Dictionary<String,Any>>
             self.appData = JSON
             print(self.appData)
-            self.numberOfApps = (self.appData.count)
+            self.numberOfApps = (self.appData?.count)!
         }catch{
             print("Cannot download data")
         }
@@ -132,15 +132,15 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "patientDetail", for: indexPath) as! patientCell
         let row = indexPath.row
-        cell.addLabel.text = self.appData[row]["Address"]!
+        cell.addLabel.text = self.appData?[row]["Address"]as! String
         //cell.daLabel.text = self.appData?[row]["DateAdmitted"] as! String
         //cell.rtLabel.text = self.appData?[row]["LoginAs"] as! String
-        cell.sexLabel.text = self.appData[row]["Sex"]!
-        cell.nameLabel.text = self.appData[row]["PName"]!
-        cell.Name = self.appData[row]["PName"]!
-        let uname = self.appData[row]["PUsername"]!
-        self.Name = self.appData[row]["PName"]!
-        let _pid = self.appData[row]["PID"]!
+        cell.sexLabel.text = self.appData?[row]["Sex"] as! String
+        cell.nameLabel.text = self.appData?[row]["PName"] as! String
+        cell.Name = self.appData?[row]["PName"] as! String
+        let uname = self.appData?[row]["PUsername"] as! String
+        self.Name = self.appData?[row]["PName"] as! String
+        let _pid = self.appData?[row]["PID"] as! String
         DispatchQueue.main.async {
             let picturePath:String = _pid + ".jpeg"
             let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
@@ -176,8 +176,8 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         {
             let currentRowToDelete = indexPath.row
             print("Row to del: \(currentRowToDelete)")
-            let currentPatientToDelete = self.appData[currentRowToDelete]["pName"]!
-            self.appData.remove(at: currentRowToDelete) //actually delete it from data
+            let currentPatientToDelete = self.appData?[currentRowToDelete]["pName"]!
+            self.appData?.remove(at: currentRowToDelete) //actually delete it from data
             self.tableView.deleteRows(at: [indexPath], with: .left)
             let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/remove_patient.php")
             var request = URLRequest(url: _URL!)

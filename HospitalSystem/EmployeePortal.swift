@@ -104,17 +104,20 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "appCell", for: indexPath) as! appCell
         let row = indexPath.row
         
-        if let currentName:String = self.appData[row]["pName"]!
-        {
-            cell.patientName.text = currentName        }
-        if let currentReason:String = self.appData[row]["reason"]!
-        {
-           cell.reasonLabel.text = currentReason
+        DispatchQueue.main.async {
+            if let currentName:String = self.appData[row]["pName"]!
+            {
+                cell.patientName.text = currentName        }
+            if let currentReason:String = self.appData[row]["reason"]!
+            {
+                cell.reasonLabel.text = currentReason
+            }
+            if let currentDate:String = self.appData[row]["date"]!
+            {
+                cell.dateLabel.text = currentDate
+            }
         }
-        if let currentDate:String = self.appData[row]["date"]!
-        {
-            cell.dateLabel.text = currentDate
-        }
+        
         
        return cell
     }

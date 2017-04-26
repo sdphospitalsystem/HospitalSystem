@@ -101,7 +101,8 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
                 return
             }
             print("response = \(response)")
-            
+            let s = String(data: data!, encoding: .utf8)
+            print("DATA: \(s)")
         }
         task.resume()
         
@@ -109,7 +110,7 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
         //Upload the image data
         let IMAGE:UIImage = imageView.image!
         ImageUploadRequest(pictureToUpload: IMAGE)
-        
+        self.performSegue(withIdentifier: "RegisteredSegue", sender: self)
     }
     
     //Opens the view to select a picture
@@ -196,8 +197,17 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RegisteredSegue"
+        {
+            if let nextView = segue.destination as? SuccessViewController
+            {
+                nextView.UNAME = self.USERNAME
+            }
+        }
+    }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activity.hidesWhenStopped=true

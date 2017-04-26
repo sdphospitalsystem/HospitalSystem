@@ -444,7 +444,6 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="continue:" destination="JC8-x9-v9R" eventType="touchUpInside" id="0KL-Wk-jAU"/>
-                                    <segue destination="fZe-NB-hKM" kind="show" id="m9h-cm-vM1"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9r-1J-F1k">
@@ -489,16 +488,17 @@
                         <outlet property="progress" destination="r6v-Aa-JGs" id="RRS-At-i1L"/>
                         <outlet property="sex" destination="yaf-M2-XGa" id="gu5-2H-O98"/>
                         <outlet property="username" destination="k7k-Uf-5m5" id="tV1-Hc-eh8"/>
+                        <segue destination="fZe-NB-hKM" kind="show" identifier="RegisteredSegue" id="X7H-0A-PDQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aF-3d-oaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="56.799999999999997" y="-107.49625187406298"/>
         </scene>
-        <!--View Controller-->
+        <!--Success View Controller-->
         <scene sceneID="nRA-QW-Txn">
             <objects>
-                <viewController id="fZe-NB-hKM" sceneMemberID="viewController">
+                <viewController id="fZe-NB-hKM" customClass="SuccessViewController" customModule="HospitalSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sfe-w6-1uy"/>
                         <viewControllerLayoutGuide type="bottom" id="Fh5-4M-pg1"/>
@@ -519,7 +519,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Continue to Patient Portal"/>
                                 <connections>
-                                    <segue destination="oiV-BR-2nI" kind="show" id="mhr-NS-tSa"/>
+                                    <segue destination="oiV-BR-2nI" kind="show" identifier="SuccessSegue" id="mhr-NS-tSa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1039,24 +1039,27 @@
                                     <action selector="scheduleApp:" destination="C09-fE-ScO" eventType="touchUpInside" id="qUC-vD-RkN"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Reason for visit" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MRX-03-10H">
-                                <rect key="frame" x="42" y="344" width="291" height="185"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Reason For Visit" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zQ7-an-eCi">
+                                <rect key="frame" x="16" y="346" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textField:" destination="C09-fE-ScO" eventType="editingDidEndOnExit" id="T0I-vu-C5M"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.9280871275" green="0.97674976069999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="ReasonForVisit" destination="MRX-03-10H" id="b5Z-gS-ICV"/>
                         <outlet property="appDate" destination="Xmm-2w-lLv" id="wVF-pb-Yko"/>
+                        <outlet property="reasonText" destination="zQ7-an-eCi" id="iUy-cB-PEP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUL-HA-3Lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="-1574"/>
+            <point key="canvasLocation" x="1821.5999999999999" y="-1574.6626686656673"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="100-37-IDh">

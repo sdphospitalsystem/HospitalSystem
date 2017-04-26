@@ -23,7 +23,7 @@ class PatientDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let username = UNAME!
-        
+        print("Username 3 : \(username)")
         let URLString = String(format: "http://sdphospitalsystem.uconn.edu/get_patient_from_uname.php?uname=%@", username)
         let _URL = URL(string: URLString)
         
