@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import AVFoundation
 
 class ScanPi {
     let session = NMSSHSession.connect(toHost: "sdppi.hopto.org:/libnfc/examples", port: 22, withUsername: "pi")

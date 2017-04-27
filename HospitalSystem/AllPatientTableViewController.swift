@@ -10,24 +10,22 @@ import UIKit
 import MessageUI
 
 class AllPatientTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
-
-    @IBOutlet weak var patient: patientCell!
-    var appData:Array<Dictionary<String,Any>>? = nil
-    var numberOfApps:Int = 0
     
-    var Name:String = ""
-    var Email:String = ""
-    var Phone:String = ""
-    var PID:String = ""
+    let Defaults = UserDefaults.standard
     
-       @IBAction func contactPatientClicked(_ sender: Any) {
+    @IBAction func contactPatientClicked(_ sender: Any) {
         print("Contact button clicked")
         //get the data for contacts
         //Get the contact data
+        var Email:String = ""
+        var Phone:String = ""
+        let _index:IndexPath? = self.tableView.indexPathForSelectedRow
+        let _Cell = self.tableView.cellForRow(at: _index!) as! patientCell
+        let _Name = _Cell.nameLabel.text!
         let _URL2 = URL(string: "http://sdphospitalsystem.uconn.edu/iosContacts.php")
         var request = URLRequest(url: _URL2!)
         request.httpMethod="POST"
-        let postString = "name=\(self.Name)"
+        let postString = "name=\(_Name)"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
@@ -37,26 +35,24 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
             }
             do{
                 let JSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Array<String>
-                self.Email = JSON[0]
-                self.Phone = JSON[1]
+                Email = JSON[0]
+                Phone = JSON[1]
             }catch{
                 print("ERROR DOWNLOADING JSON")
             }
         }
         task.resume()
-        
-        
         //Present an alert to ask the user if they want to contact
         var contactAlert = UIAlertController(title: "Contact", message: "Choose Email or Phone", preferredStyle: .alert)
         var _phone = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
             //code to make call here
             //phone "url":
-            let phoneURL:URL = URL(string: "telprompt://\(self.Phone)")!
+            let phoneURL:URL = URL(string: "telprompt://\(Phone)")!
             UIApplication.shared.openURL(phoneURL)
         }
         var _email = UIAlertAction(title: "Email", style: .default) { (UIAlertAction) in
             //Code to do email here
-            self.sendEmail(Recipient: self.Email, Subject: "Test")
+            self.sendEmail(Recipient: Email, Subject: "Test")
         }
         contactAlert.addAction(_phone)
         contactAlert.addAction(_email)
@@ -68,27 +64,14 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         tableView.allowsSelection = false
         tableView.allowsSelectionDuringEditing = false
         self.tableView.layoutIfNeeded()
-        //self.tableView.allowsSelection = false
-        self.tableView.reloadData()
-        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/get_all_patient.php")
-        do {
-            let data =  try Data(contentsOf: _URL!)
-            let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Array<Dictionary<String,Any>>
-            self.appData = JSON
-            print(self.appData)
-            self.numberOfApps = (self.appData?.count)!
-        }catch{
-            print("Cannot download data")
-        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //Load the pictures and patient data from defaults
         
+        //self.AllPatients = Defaults.object(forKey: "AllPatientData") as! Array<Dictionary<String, String>>
+        //self.Pictures = Defaults.object(forKey: "PatientImages") as! Dictionary<String, UIImage>
         
-
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,53 +81,28 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
-
+    override func numberOfSections(in tableView: UITableView) -> Int {return 1}
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.numberOfApps
+        let Patients = Defaults.object(forKey: "AllPatientData") as! Array<Dictionary<String, Any>>
+        return Patients.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let Patients = Defaults.object(forKey: "AllPatientData") as! Array<Dictionary<String, String>>
         let cell = tableView.dequeueReusableCell(withIdentifier: "patientDetail", for: indexPath) as! patientCell
         let row = indexPath.row
-        cell.addLabel.text = self.appData?[row]["Address"]as! String
-        //cell.daLabel.text = self.appData?[row]["DateAdmitted"] as! String
-        //cell.rtLabel.text = self.appData?[row]["LoginAs"] as! String
-        cell.sexLabel.text = self.appData?[row]["Sex"] as! String
-        cell.nameLabel.text = self.appData?[row]["PName"] as! String
-        cell.Name = self.appData?[row]["PName"] as! String
-        let uname = self.appData?[row]["PUsername"] as! String
-        self.Name = self.appData?[row]["PName"] as! String
-        let _pid = self.appData?[row]["PID"] as! String
-        DispatchQueue.main.async {
-            print("uname: \(uname)")
-            let picturePath:String = uname + ".jpeg"
-            let imageURL:URL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath)!
-            print("URL: \(imageURL)")
-            let session = URLSession(configuration: .default)
-            let picTask = session.dataTask(with: imageURL) { (data,response,error) in
-                if let e = error {
-                    print("ERROR: \(e)")
-                }else{
-                    if let imageData = data{
-                        let IMAGE = UIImage(data: imageData)
-                        cell.pImage!.image = IMAGE as! UIImage
-                        
-                        cell.setNeedsLayout()
-                        cell.layoutIfNeeded()
-                    }else
-                    {
-                        print("Could not get image")
-                    }
-                }
-                
+        cell.addLabel.text! = Patients[row]["Address"]!
+        cell.sexLabel.text! = Patients[row]["Sex"]!
+        cell.nameLabel.text! = Patients[row]["PName"]!
+        let currentUNAME:String = Patients[row]["PUsername"]!
+        if let imageData = Defaults.object(forKey: currentUNAME) as? Data{
+            if let _image = UIImage(data: imageData)
+            {
+                cell.pImage.image = _image
             }
-            picTask.resume()
         }
         
         cell.setNeedsLayout()
@@ -155,13 +113,13 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
         return true
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        var Patients = Defaults.object(forKey: "AllPatientData") as! Array<Dictionary<String, Any>>
         if(editingStyle == UITableViewCellEditingStyle.delete)
         {
             let currentRowToDelete = indexPath.row
-            print("Row to del: \(currentRowToDelete)")
-            let currentPatientToDelete = self.appData?[currentRowToDelete]["pName"]!
-            self.appData?.remove(at: currentRowToDelete) //actually delete it from data
-            self.tableView.deleteRows(at: [indexPath], with: .left)
+            let currentPatientToDelete = Patients[currentRowToDelete]["pName"]!
+            Patients.remove(at: currentRowToDelete) //actually delete it from data
+            //Delete from DB
             let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/remove_patient.php")
             var request = URLRequest(url: _URL!)
             request.httpMethod="POST"
@@ -181,6 +139,9 @@ class AllPatientTableViewController: UITableViewController, MFMailComposeViewCon
             }
             task.resume()
         }
+        //save updated data to UD
+        Defaults.set(Patients, forKey: "AllPatientData") as! Array<Dictionary<String, Any>>
+        self.tableView.deleteRows(at: [indexPath], with: .left)
     }
 
     

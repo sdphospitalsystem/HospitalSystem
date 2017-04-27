@@ -12,6 +12,7 @@ class PatientLoginViewController: UIViewController
 {
     var USERNAME:String = ""
     var PASSWORD:String = ""
+    var Defaults = UserDefaults.standard
     
     @IBOutlet weak var username: UITextField!
     
@@ -21,6 +22,37 @@ class PatientLoginViewController: UIViewController
         var userExists:String = ""
         self.USERNAME = username.text!
         self.PASSWORD = password.text!
+        
+//We first get all the patient details based and save them so no more data requests need to be made:
+        
+        let URLString = String(format: "http://sdphospitalsystem.uconn.edu/get_patient_from_uname.php?uname=%@", self.USERNAME)
+        let _url = URL(string: URLString)
+        do {
+            let RESULT = try Data(contentsOf: _url!)
+            let CurrentPatientDetails = try JSONSerialization.jsonObject(with: RESULT, options: .mutableContainers) as! [String:String]
+            let uname:String = CurrentPatientDetails["PUsername"] as! String
+            UserDefaults.standard.set(CurrentPatientDetails, forKey: "CurrentPatientDetails")
+            
+//we now get the patients image and save it to his username:
+            let picturePath:String = uname + ".jpeg"
+            if let imageURL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath){
+                downloadImage(url: imageURL, username: uname)
+            }
+//Finally we get all the doctors:
+            let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/contact_doctor.php")
+            do {
+                let data = try Data(contentsOf: _URL!)
+                let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [[String:String]]
+                UserDefaults.standard.set(JSON, forKey: "DoctorContacts")
+            } catch {
+                print("Error downlading data")
+            }
+            UserDefaults.standard.synchronize()
+        } catch  {
+            "Error Downloading and saving data"
+        }
+        
+        //Run script to login
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/iosLogin.php")
         var request = URLRequest(url: _URL!)
         request.httpMethod="POST"
@@ -59,15 +91,6 @@ class PatientLoginViewController: UIViewController
     
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LogInSegue"
-        {
-            var destNav = segue.destination as! UINavigationController
-            var nextView = destNav.topViewController as! PatientPortal
-            nextView.UNAME = self.USERNAME
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -75,6 +98,27 @@ class PatientLoginViewController: UIViewController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?,_ response: URLResponse?, _ error: Error?) -> Void){
+        URLSession.shared.dataTask(with: url){
+            (data,response,error) in
+            completion(data,response,error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL, username:String)
+    {
+        print("Download Started")
+        getDataFromUrl(url: url) { (data, response, error) in
+            guard let data = data, error == nil else {return}
+            print("Download Finished")
+            DispatchQueue.main.async {()-> Void in
+                let image = UIImage(data: data)
+                let JPG = UIImageJPEGRepresentation(image!, 1.0)
+                self.Defaults.set(JPG, forKey: username)
+            }
+        }
     }
     
     
