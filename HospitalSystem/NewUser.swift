@@ -77,6 +77,7 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
     //uploads image to DB
     @IBAction func `continue`(_ sender: UIButton)
     {
+        var NewPatientDetails:[String:String] = [:]
         progress.progress=0.0
         //Sends the text data to register patients
         NAME = name.text!
@@ -86,7 +87,29 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
         EMAIL = email.text!
         PHONE = phone.text!
         SEX = sex.text!
-        print("Sending Data")
+        NewPatientDetails["PName"]=NAME
+        NewPatientDetails["PPassword"]=PASS
+        NewPatientDetails["Address"]=ADDR
+        NewPatientDetails["PUsername"]=USERNAME
+        NewPatientDetails["PEmail"]=EMAIL
+        NewPatientDetails["PPhone"]=PHONE
+        NewPatientDetails["Sex"]=SEX
+        //Before we send data to DB we save in UserDefaults
+        UserDefaults.standard.set(NewPatientDetails, forKey: "CurrentPatientDetails")
+        
+        
+        //Get doctors too
+        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/contact_doctor.php")
+        do {
+            let data = try Data(contentsOf: _URL!)
+            let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [[String:String]]
+            UserDefaults.standard.set(JSON, forKey: "DoctorContacts")
+        } catch {
+            print("Error downlading data")
+        }
+        
+        
+        //Now actually send it to server/db
         var request = URLRequest(url: NSURL(string: "http://sdphospitalsystem.uconn.edu/register_patient.php")! as URL)
         progress.isHidden = false
         progress.progress=0
@@ -207,20 +230,6 @@ class NewUser: UIViewController, UITextFieldDelegate, UIImagePickerControllerDel
         return body
         
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "RegisteredSegue"
-        {
-            if let nextView = segue.destination as? SuccessViewController
-            {
-                nextView.UNAME = self.USERNAME
-                print("NAME AT SEG1: \(self.NAME)")
-                nextView.NAME = self.NAME as! String
-            }
-        }
-        
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

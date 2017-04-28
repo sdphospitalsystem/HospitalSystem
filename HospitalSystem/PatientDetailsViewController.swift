@@ -10,9 +10,7 @@ import UIKit
 
 class PatientDetailsViewController: UIViewController {
 
-    var UNAME:String!
-    
-    
+
     @IBOutlet weak var patientImage: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,6 +21,18 @@ class PatientDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Load the patients details from U.D
+        let CurrentUser = UserDefaults.standard.object(forKey: "CurrentPatientDetails") as! [String:String]
+        let uname:String = CurrentUser["PUsername"]!
+        if let imageData = UserDefaults.standard.object(forKey: uname) as? Data{
+            if let _image = UIImage(data: imageData)
+            {
+                patientImage.image = _image
+            }
+        }
+        nameLabel.text! = CurrentUser["PName"]!
+        addrLabel.text! = CurrentUser["Address"]!
+        unameLabel.text! = CurrentUser["PUsername"]!
 
     }
 

@@ -10,11 +10,7 @@ import UIKit
 import MessageUI
 
 class ContactDoctorTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
-    var contacts:Array<Dictionary<String,String>> = Array(arrayLiteral: Dictionary<String,String>())
-    
-    var NAME:String = ""
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,17 +18,7 @@ class ContactDoctorTableViewController: UITableViewController, MFMailComposeView
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.allowsSelectionDuringEditing = false
-        let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/contact_doctor.php")
-        do {
-            let data = try Data(contentsOf: _URL!)
-            let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Array<Dictionary<String,String>>
-            self.contacts = JSON
-            
-            
-        } catch {
-            print("Error downlading data")
-        }
-    }
+            }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,14 +30,17 @@ class ContactDoctorTableViewController: UITableViewController, MFMailComposeView
 
     override func numberOfSections(in tableView: UITableView) -> Int {return 1}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return contacts.count}
-
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        let AllDoctors = UserDefaults.standard.object(forKey: "DoctorContacts") as! [[String:String]]
+        return AllDoctors.count
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        print("DATA: \(self.contacts)")
+        let CurrentDoctors = UserDefaults.standard.object(forKey: "DoctorContacts") as! [[String:String]]
         let cell = tableView.dequeueReusableCell(withIdentifier: "doctorCell", for: indexPath) as! doctorCell
-        cell.name.text = self.contacts[row]["DName"]!
+        cell.name.text = CurrentDoctors[row]["DName"]!
         cell.setNeedsLayout()
         return cell
     }

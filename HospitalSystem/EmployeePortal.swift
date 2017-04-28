@@ -16,8 +16,8 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    let Defaults = UserDefaults.standard
-    
+
+    var AppointmentData:[[String:String]]!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
@@ -52,6 +52,7 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        AppointmentData = UserDefaults.standard.object(forKey: "ApptData") as! Array<Dictionary<String,String>>
         }
     
     
@@ -62,16 +63,14 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //The number of rows is equal to the amount of appointments the data returned:
-        let ApptData = Defaults.object(forKey: "ApptData") as! Array<Dictionary<String,String>>
-        return ApptData.count
+        return AppointmentData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "appCell", for: indexPath) as! appCell
         let row = indexPath.row
-        var ApptData = Defaults.object(forKey: "ApptData") as! Array<Dictionary<String,String>>
-        cell.patientName.text! = ApptData[row]["pName"]!
-        cell.reasonLabel.text! = ApptData[row]["reason"]!
-        cell.dateLabel.text! = ApptData[row]["date"]!
+        cell.patientName.text! = AppointmentData[row]["pName"]!
+        cell.reasonLabel.text! = AppointmentData[row]["reason"]!
+        cell.dateLabel.text! = AppointmentData[row]["date"]!
         return cell
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -79,12 +78,11 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        var ApptData = Defaults.object(forKey: "ApptData") as! Array<Dictionary<String,String>>
         if(editingStyle == UITableViewCellEditingStyle.delete)
         {
             let currentRowToDelete = indexPath.row
-            let currentAppToDelete = ApptData[currentRowToDelete]["pName"]!
-            ApptData.remove(at: currentRowToDelete) //actually delete it from user defaults data
+            let currentAppToDelete = AppointmentData[currentRowToDelete]["pName"]!
+            AppointmentData.remove(at: currentRowToDelete) //actually delete it from user defaults data
             //Remove it from DB
             let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/delete_appointment.php")
             var request = URLRequest(url: _URL!)
@@ -105,12 +103,6 @@ class EmployeePortal: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             task.resume()
         }
-        //Save new data set back to UserDefaults
-        Defaults.set(ApptData, forKey: "ApptData") as! Array<Dictionary<String,String>>
-        self.tableView.deleteRows(at: [indexPath], with: .left) //remove it from the tableview
+        self.tableView.deleteRows(at: [indexPath], with: .left)
     }
-        
-    
-    
-
 }

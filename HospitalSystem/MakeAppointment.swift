@@ -19,14 +19,14 @@ class MakeAppointment: UIViewController {
     
     @IBAction func scheduleApp(_ sender: UIButton)
     {
-        
+        let CurrentPatient = UserDefaults.standard.object(forKey: "CurrentPatientDetails") as! [String:String]
         let date = appDate.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:MM:SS"
         let mysqlDate:String = dateFormatter.string(from: date)
         print(mysqlDate)
         let textResponse:String = reasonText.text!
-        let name:String = self.NAME as! String
+        let name:String = CurrentPatient["PName"]!
         
         let _URL = URL(string: "http://sdphospitalsystem.uconn.edu/make_appointment.php")
         var request = URLRequest(url: _URL!)

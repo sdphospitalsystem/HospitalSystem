@@ -10,13 +10,16 @@ import UIKit
 
 class SuccessViewController: UIViewController {
 
-    var UNAME:String!
-    var NAME:String!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+//By this View, the new patients image should already be up so we can get that and save it
+        let CurrUser:[String:String] = UserDefaults.standard.object(forKey: "CurrentPatientDetails") as! [String:String]
+        let uname:String = CurrUser["PUsername"]!
+        let picturePath:String = uname + ".jpeg"
+        if let imageURL = URL(string: "http://sdphospitalsystem.uconn.edu/includes/uploads/" + picturePath){
+            downloadImage(url: imageURL, username: uname)
+        }
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,13 +27,24 @@ class SuccessViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SuccessSegue"
-        {
-            var destNav = segue.destination as! UINavigationController
-            var nextView = destNav.topViewController as! PatientPortal
-            nextView.UNAME = self.UNAME
-            nextView.NAME = self.NAME as! String
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?,_ response: URLResponse?, _ error: Error?) -> Void){
+        URLSession.shared.dataTask(with: url){
+            (data,response,error) in
+            completion(data,response,error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL, username:String)
+    {
+        print("Download Started")
+        getDataFromUrl(url: url) { (data, response, error) in
+            guard let data = data, error == nil else {return}
+            print("Download Finished")
+            DispatchQueue.main.async {()-> Void in
+                let image = UIImage(data: data)
+                let JPG = UIImageJPEGRepresentation(image!, 1.0)
+                UserDefaults.standard.set(JPG, forKey: username)
+            }
         }
     }
 
